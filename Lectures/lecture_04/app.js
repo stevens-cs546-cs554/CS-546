@@ -1,28 +1,23 @@
-const dogs = require("./dogs");
-const posts = require("./posts");
-const connection = require("./mongoConnection");
+const dogs = require('./dogs');
+const posts = require('./posts');
+const connection = require('./mongoConnection');
 
 const main = async () => {
-  const sasha = await dogs.addDog("Sasha", ["Cheagle", "Chihuaha", "Beagle"]);
-  console.log("Sasha the dog has been added, now she will blog!");
+  const sasha = await dogs.addDog('Sasha', ['Cheagle', 'Chihuaha', 'Beagle']);
+  console.log('Sasha the dog has been added, now she will blog!');
   console.log(sasha);
 
-  const max = await dogs.addDog("Max", ["Mastiff"]);
-  console.log(
-    "Max enters the playing field; he is a grizzled ex-cop with a heart of gold."
-  );
+  const max = await dogs.addDog('Max', ['Mastiff']);
+  console.log('Max enters the playing field; he is a grizzled ex-cop with a heart of gold.');
   const maxPost = await posts.addPost(
-    "The Case of the Stolen Bone",
+    'The Case of the Stolen Bone',
     "It was 2015 when it happened. Someone stole the bone, and hid it in a hole outside. It's a good thing that I hide all my bones in holes outside, or I would have never found. I then realized that, all along, it was me who hid the bone.",
     max._id
   );
 
-  const porkChop = await dogs.addDog("Pork Chop", [
-    "Golden Retriever",
-    "Labrador"
-  ]);
+  const porkChop = await dogs.addDog('Pork Chop', ['Golden Retriever', 'Labrador']);
   const porkChopPost = await posts.addPost(
-    "Who Am I?",
+    'Who Am I?',
     "They call me Pork Chop. I don't like Pork! I only eat Turkey! I DON'T KNOW WHO I AM!",
     porkChop._id
   );
@@ -35,25 +30,27 @@ const main = async () => {
   console.log(post);
   console.log("Let's change the title...");
 
-  const updatedPost = await posts.updatePost(
-    post._id,
-    "For Love of Bleu d'Auvergne",
-    post.body,
-    post.poster.id
-  );
+  const updatedPost = await posts.updatePost(post._id, "For Love of Bleu d'Auvergne", post.body, post.poster.id);
 
-  console.log("Now, the post is:");
+  console.log('Now, the post is:');
   console.log(updatedPost);
   console.log("That's all, folks!");
 
   await posts.removePost(updatedPost._id);
 
+  console.log("Let's update a dog");
+
+  const updatedSashasName = await dogs.updateDog(sasha._id, 'Dharma', sasha.breeds);
+
+  console.log("Now Sasha's name is:");
+  console.log(updatedSashasName);
+
   const db = await connection();
   await db.serverConfig.close();
 
-  console.log("Done!");
+  console.log('Done!');
 };
 
-main().catch(error => {
+main().catch((error) => {
   console.log(error);
 });
