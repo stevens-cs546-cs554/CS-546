@@ -52,5 +52,8 @@ const main = async () => {
 };
 
 main().catch((error) => {
+  connection().then( ( db ) => {
+    db.serverConfig.close();
+  } );
   console.log(error);
 });
