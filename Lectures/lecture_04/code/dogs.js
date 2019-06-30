@@ -17,9 +17,9 @@ module.exports = {
   async getAllDogs() {
     const dogCollection = await dogs();
 
-    const dogs = await dogCollection.find({}).toArray();
+    const doggos = await dogCollection.find({}).toArray();
 
-    return dogs;
+    return doggos;
   },
 
   async addDog(name, breeds) {
