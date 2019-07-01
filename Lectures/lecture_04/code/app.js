@@ -1,4 +1,4 @@
-Wconst dogs = require('./dogs');
+const dogs = require('./dogs');
 const posts = require('./posts');
 const connection = require('./mongoConnection');
 
