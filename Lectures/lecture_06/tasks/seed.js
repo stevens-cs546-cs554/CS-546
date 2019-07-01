@@ -27,4 +27,9 @@ const main = async () => {
   await db.serverConfig.close();
 };
 
-main().catch(console.log);
+main().catch( ( error ) => {
+  console.log(error);
+  connection().then( ( db ) => {
+    db.serverConfig.close();
+  } );
+} );
