@@ -1,4 +1,4 @@
-const dogs = require('./dogs');
+Wconst dogs = require('./dogs');
 const posts = require('./posts');
 const connection = require('./mongoConnection');
 
@@ -52,8 +52,8 @@ const main = async () => {
 };
 
 main().catch((error) => {
+  console.log(error);
   connection().then( ( db ) => {
     db.serverConfig.close();
   } );
-  console.log(error);
 });
