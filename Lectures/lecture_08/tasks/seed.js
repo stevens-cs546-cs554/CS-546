@@ -42,5 +42,8 @@ dbConnection().then(
   },
   error => {
     console.error(error);
+    return dbConnection().then( ( db ) => {
+      return db.serverConfig.close();
+    } );
   }
 );
