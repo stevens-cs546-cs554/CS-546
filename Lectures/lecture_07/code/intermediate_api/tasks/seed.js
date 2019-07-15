@@ -23,8 +23,10 @@ async function main() {
     [],
     id
   );
+
   console.log("Done seeding database");
-  await db.close();
+
+  await db.serverConfig.close();
 }
 
 main();

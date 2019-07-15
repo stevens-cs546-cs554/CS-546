@@ -3,47 +3,36 @@ const data = require("../data/");
 const users = data.users;
 const posts = data.posts;
 
-dbConnection().then(
-  db => {
-    return db
-      .dropDatabase()
-      .then(() => {
-        return dbConnection;
-      })
-      .then(db => {
-        return users.addUser("Phil", "Barresi");
-      })
-      .then(phil => {
-        const id = phil._id;
+async function main() {
+  const db = await dbConnection();
 
-        return posts
-          .addPost("Hello, class!", "Today we are creating a blog!", [], id)
-          .then(() => {
-            return posts.addPost(
-              "Using the seed",
-              "We use the seed to have some initial data so we can just focus on servers this week",
-              [],
-              id
-            );
-          })
-          .then(() => {
-            return posts.addPost(
-              "Using routes",
-              "The purpose of today is to simply look at some GET routes",
-              [],
-              id
-            );
-          });
-      })
-      .then(() => {
-        console.log("Done seeding database");
-        db.close();
-      });
-  },
-  error => {
-    console.error(error);
-    return dbConnection().then( ( db ) => {
-      return db.serverConfig.close();
-    } );
-  }
-);
+  await db.dropDatabase();
+
+  const phil = await users.addUser("Phil", "Barresi");
+  const id = phil._id;
+
+  await posts.addPost("Hello, class!", "Today we are creating a blog!", [], id);
+
+  await posts.addPost(
+    "Using the seed",
+    "We use the seed to have some initial data so we can just focus on servers this week",
+    [],
+    id
+  );
+  await posts.addPost(
+    "Using routes",
+    "The purpose of today is to simply look at some GET routes",
+    [],
+    id
+  );
+
+  console.log("Done seeding database");
+  await db.serverConfig.close();
+}
+
+main().catch(error => {
+  console.error(error);
+  return dbConnection().then(db => {
+    return db.serverConfig.close();
+  });
+});

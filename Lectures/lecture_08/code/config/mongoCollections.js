@@ -5,11 +5,10 @@ const dbConnection = require("./mongoConnection");
 let getCollectionFn = collection => {
   let _col = undefined;
 
-  return () => {
+  return async () => {
     if (!_col) {
-      _col = dbConnection().then(db => {
-        return db.collection(collection);
-      });
+      const db = await dbConnection();
+      _col = await db.collection(collection);
     }
 
     return _col;
