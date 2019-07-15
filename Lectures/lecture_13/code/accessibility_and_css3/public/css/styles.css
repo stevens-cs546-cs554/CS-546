@@ -1,0 +1,137 @@
+html {
+  font-size: 12pt;
+  font-family: sans-serif;
+}
+
+body {
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.editor:focus {
+  outline: none;
+  border: none;
+  background: #fefefe;
+}
+
+.editor p {
+  transition: font-size 2s ease-in-out;
+}
+
+.editor p:hover {
+  font-size: 1.25rem;
+}
+
+.editor p:first-child::first-line {
+  font-size: 1.5rem;
+  font-variant: small-caps;
+}
+
+.editor p:first-child::first-letter {
+  font-size: 2rem;
+  font-family: cursive;
+}
+
+blockquote::before {
+  display: inline-block;
+  margin-left: -20px;
+  content: '"';
+  font-size: 32pt;
+  font-family: serif;
+}
+
+blockquote {
+}
+
+blockquote:hover {
+  animation: shake 5s infinite;
+}
+
+.boogie-down {
+  animation: boogie 5s infinite;
+}
+
+blockquote::after {
+  content: '"';
+  font-size: 32pt;
+  font-family: serif;
+}
+
+blockquote,
+p {
+  font-size: 1rem;
+}
+
+.strong {
+  font-weight: 700;
+}
+
+.emphasized {
+  font-style: italic;
+}
+
+.underlined {
+  text-decoration: underline;
+}
+
+@keyframes shake {
+  from {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-100px, 0);
+  }
+  40% {
+    transform: translate(0, 0);
+  }
+  60% {
+    transform: translate(100px, 0);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes boogie {
+  from {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(50deg);
+  }
+  40% {
+    transform: rotate(200deg);
+  }
+  60% {
+    transform: rotate(280deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Lecture CSS Here */
+
+/* Media Queries */
+
+@media (min-width: 500px) {
+  main {
+    max-width: 80%;
+    margin: auto;
+  }
+}
+
+@media (min-width: 800px) {
+  html {
+    font-size: 14pt;
+  }
+  main {
+    max-width: 640px;
+  }
+}
+
+/* Transitions and Animations */

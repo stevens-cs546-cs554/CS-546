@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bootstrap</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/css/styles.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>On Bootstrap <small>Making Life Easier with Bootstrap</small></h1>
+            <p>Front-End tools make things easier; but they're something to use <em>after</em> you've learned how to live without
+                them.
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3 show-border">LOGO HERE</div>
+            <div class="col-xs-12 col-sm-6 show-border">NAV HERE</div>
+            <div class="col-xs-12 col-sm-12 col-md-3 show-border">Search here</div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 show-border">
+                <h2>My Blog</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>My Blog Post</h3>
+                        <p>Can you tell Phil was going to be a writer when he was younger?</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="hidden-xs hidden-sm col-md-3 col-md-offset-1 show-border">
+                <h2>About Me</h2>
+            </div>
+        </div>
+        <div class="row add-to-top">
+            <div class="col-xs-12">
+                <button>No style</button>
+                <button class="btn btn-primary">I'm a primary button</button>
+                <button class="btn btn-info">I'm an info button</button>
+                <button class="btn btn-warning">I'm an warning button</button>
+                <button class="btn btn-danger">I'm an danger button</button>
+                <button class="btn btn-success">I'm a success button</button>
+            </div>
+        </div>
+        <div class="row add-to-top">
+            <div class="col-xs-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            success panel header
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        success Panel content
+                    </div>
+                    <div class="panel-footer">Panel footer</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="alert alert-success">
+                    Something good has happened!
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-primary" id="cs-546-modal-toggle" data-toggle="modal" data-target="#cs-546-modal">Read Message to Class</button>
+
+                <div class="modal" id="cs-546-modal" tabindex="-1" role="dialog" aria-labelledby="cs-546-modal-toggle">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Hello, Class!</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>We can place any content inside of a modal!</p>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        I'm a column!
+                                    </div>
+                                    <div class="col-sm-6">
+                                        So am I!
+                                        <div class="alert alert-danger">
+                                            <button data-dismiss="alert" class="btn btn-danger">Dismiss</button> I am the
+                                            danger
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- jQuery fallback -->
+    <script>
+        if (!window.jQuery) { document.write('<script src="/public/js/jquery.js"><\/script>'); }
+    </script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

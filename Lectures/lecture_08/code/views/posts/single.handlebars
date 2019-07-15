@@ -1,0 +1,14 @@
+<article class="post">
+  <h1>{{ post.title }}</h1>
+  <address>Posted by <a href="" rel="author">{{post.poster.name}}</a></address>
+  <p>{{ post.body }}</p>
+
+  {{#if post.tags.length}}
+    <h3>Tags</h3>
+    <ul>
+      {{#each post.tags}}
+        <li><a href="/posts/tag/{{this}}">{{this}}</a></li>
+      {{/each}}
+    </ul>
+  {{/if}}
+</article>

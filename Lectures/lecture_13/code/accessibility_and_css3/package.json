@@ -1,0 +1,14 @@
+{
+  "name": "accessibility_and_css3",
+  "version": "1.0.0",
+  "description": "A boilerplate to use in CS-546 Assignments",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}

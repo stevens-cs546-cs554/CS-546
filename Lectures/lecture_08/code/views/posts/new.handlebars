@@ -1,0 +1,52 @@
+<article class="new-post">
+  <h1>Make a Post</h1>
+  <form action="/posts" method="POST" class="new-post-form">
+    <label>
+      Post Title
+      <input type="text" name="title" placeholder="Post Title" value="{{post.title}}" class="full-width-input"/>
+    </label>
+    <label>
+      What number professor am I?
+      <input type="number" name="professor_ranking" placeholder="#1 professor in North America" class="full-width-input"/>
+    </label>
+    <label for="post-body">
+      Post Body
+    </label>
+    <textarea id="post-body" name="body" rows="4" placeholder="Post Content" class="full-width-input">{{post.body}}</textarea>
+
+    <label for="poster">
+      Poster
+    </label>
+    <select class="full-width-input" name="posterId">
+      <option value="">Select User...</option>
+      <option value="ee9c1ebb-a589-4075-a9a9-e6ee38145f67">Phil</option>
+    </select>
+    <label>
+      <input type="radio" name="user-test" value="1" /> One
+    </label>
+    <label>
+      <input type="radio" name="user-test" value="2" /> Two
+    </label>
+
+    <div>
+      <label>
+      <input type="checkbox" name="checkbox-test" value="first" /> First
+  </label></div>
+    <div>
+      <label>
+      <input type="checkbox" name="checkbox-test" value="second" /> Second
+  </label></div>
+    <button type="submit">Create New Post</button>
+    <button type="reset">Clear Form</button>
+    <button type="button">Click me!</button>
+  </form>
+  {{#if hasErrors}}
+  <ul class="error-list">
+    {{#each errors}}
+    <li>
+      {{this}}
+    </li>
+    {{/each}}
+  </ul>
+  {{/if}}
+</article>
