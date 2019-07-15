@@ -18,14 +18,13 @@
   },
   "homepage": "https://github.com/Stevens-CS546/Boilerplate#readme",
   "dependencies": {
-    "bcrypt": "^2.0.0",
+    "bcrypt": "^3.0.6",
     "bluebird": "^3.5.1",
     "body-parser": "^1.14.2",
     "cookie-parser": "^1.4.1",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
-    "guid": "0.0.12",
-    "mongodb": "^2.1.7",
-    "request-promise": "^2.0.0"
+    "mongodb": "^3.2.7",
+    "request-promise": "^4.2.4"
   }
 }
