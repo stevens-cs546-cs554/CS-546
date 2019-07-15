@@ -1,7 +1,7 @@
 const mongoCollections = require("../config/mongoCollections");
 const posts = mongoCollections.posts;
 const users = require("./users");
-const uuid = require("node-uuid");
+const uuid = require("uuid/v4");
 
 let exportedMethods = {
   getAllPosts() {
@@ -33,7 +33,7 @@ let exportedMethods = {
             name: `${userThatPosted.firstName} ${userThatPosted.lastName}`
           },
           tags: tags,
-          _id: uuid.v4()
+          _id: uuid()
         };
 
         return postCollection

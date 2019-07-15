@@ -1,6 +1,6 @@
 const mongoCollections = require("../config/mongoCollections");
 const users = mongoCollections.users;
-const uuid = require("node-uuid");
+const uuid = require("uuid/v4");
 
 let exportedMethods = {
   getAllUsers() {
@@ -23,7 +23,7 @@ let exportedMethods = {
       let newUser = {
         firstName: firstName,
         lastName: lastName,
-        _id: uuid.v4()
+        _id: uuid()
       };
 
       return userCollection

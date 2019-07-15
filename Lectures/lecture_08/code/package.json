@@ -15,6 +15,6 @@
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "mongodb": "^2.1.18",
-    "node-uuid": "^1.4.7"
+    "uuid": "^3.3.2"
   }
 }

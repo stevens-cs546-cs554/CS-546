@@ -1,7 +1,7 @@
 const mongoCollections = require("../config/mongoCollections");
 const posts = mongoCollections.posts;
 const users = require("./users");
-const uuid = require("node-uuid");
+const uuid = require("uuid/v4");
 
 const exportedMethods = {
   async getAllPosts() {
@@ -41,7 +41,7 @@ const exportedMethods = {
         name: `${userThatPosted.firstName} ${userThatPosted.lastName}`
       },
       tags: tags,
-      _id: uuid.v4()
+      _id: uuid()
     };
 
     const newInsertInformation = await postCollection.insertOne(newPost);
