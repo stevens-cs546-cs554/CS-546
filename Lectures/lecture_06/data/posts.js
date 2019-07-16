@@ -64,7 +64,7 @@ let exportedMethods = {
         };
 
         return postCollection
-          .updateOne({ _id: id }, updatedPost)
+          .updateOne({ _id: id }, { $set: updatedPost })
           .then(result => {
             return this.getPostById(id);
           });

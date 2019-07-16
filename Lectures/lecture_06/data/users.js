@@ -48,12 +48,16 @@ let exportedMethods = {
   updateUser(id, firstName, lastName) {
     return this.getUserById(id).then(currentUser => {
       let updatedUser = {
-        firstName: name,
+        firstName: firstName,
         lastName: lastName
       };
 
-      return userCollection.updateOne({ _id: id }, updatedUser).then(() => {
-        return this.getUserById(id);
+      return users().then(userCollection => {
+        return userCollection
+          .updateOne({ _id: id }, { $set: updatedUser })
+          .then(() => {
+            return this.getUserById(id);
+          });
       });
     });
   }

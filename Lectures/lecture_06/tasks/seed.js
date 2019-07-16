@@ -24,6 +24,7 @@ const main = async () => {
     id
   );
   console.log("Done seeding database");
+  await users.updateUser(phil._id, "Patrick", "Hill");
   await db.serverConfig.close();
 };
 
