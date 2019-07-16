@@ -1,6 +1,9 @@
 const MongoClient = require("mongodb").MongoClient;
-const settings = require("./settings");
-const mongoConfig = settings.mongoConfig;
+
+const mongoConfig = {
+  serverUrl: "mongodb://localhost:27017/",
+  database: "apiBasedBlog"
+};
 
 let _connection = undefined;
 let _db = undefined;
