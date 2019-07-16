@@ -1,7 +1,7 @@
 const mongoCollections = require("../config/mongoCollections");
 const posts = mongoCollections.posts;
 const users = require("./users");
-const uuid = require("uuid/v4");
+const uuid = require("node-uuid");
 
 let exportedMethods = {
   getAllPosts() {
@@ -27,7 +27,7 @@ let exportedMethods = {
             id: posterId,
             name: `${userThatPosted.firstName} ${userThatPosted.lastName}`
           },
-          _id: uuid()
+          _id: uuid.v4()
         };
 
         return postCollection
@@ -64,7 +64,7 @@ let exportedMethods = {
         };
 
         return postCollection
-          .updateOne({ _id: id }, updatedPost)
+          .updateOne({ _id: id }, { $set: updatedPost })
           .then(result => {
             return this.getPostById(id);
           });
