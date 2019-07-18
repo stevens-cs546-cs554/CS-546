@@ -1,18 +1,18 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const data = require("../data");
+const data = require('../data');
 const userData = data.users;
 
-router.get("/:id", async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const user = await userData.getUserById(req.params.id);
     res.json(user);
   } catch (e) {
-    res.status(404).json({ error: "User not found" });
+    res.status(404).json({error: 'User not found'});
   }
 });
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const userList = await userData.getAllUsers();
     res.json(userList);
@@ -21,57 +21,54 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   const userInfo = req.body;
 
   if (!userInfo) {
-    res.status(400).json({ error: "You must provide data to create a user" });
+    res.status(400).json({error: 'You must provide data to create a user'});
     return;
   }
 
   if (!userInfo.firstName) {
-    res.status(400).json({ error: "You must provide a first name" });
+    res.status(400).json({error: 'You must provide a first name'});
     return;
   }
 
   if (!userInfo.lastName) {
-    res.status(400).json({ error: "You must provide a last name" });
+    res.status(400).json({error: 'You must provide a last name'});
     return;
   }
 
   try {
-    const newUser = await userData.addUser(
-      userInfo.firstName,
-      userInfo.lastName
-    );
+    const newUser = await userData.addUser(userInfo.firstName, userInfo.lastName);
     res.json(newUser);
   } catch (e) {
     res.sendStatus(500);
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put('/:id', async (req, res) => {
   const userInfo = req.body;
 
   if (!userInfo) {
-    res.status(400).json({ error: "You must provide data to update a user" });
+    res.status(400).json({error: 'You must provide data to update a user'});
     return;
   }
 
   if (!userInfo.firstName) {
-    res.status(400).json({ error: "You must provide a first name" });
+    res.status(400).json({error: 'You must provide a first name'});
     return;
   }
 
   if (!userInfo.lastName) {
-    res.status(400).json({ error: "You must provide a last name" });
+    res.status(400).json({error: 'You must provide a last name'});
     return;
   }
 
   try {
     await userData.getUserById(req.params.id);
   } catch (e) {
-    res.status(404).json({ error: "User not found" });
+    res.status(404).json({error: 'User not found'});
     return;
   }
 
@@ -83,11 +80,11 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     await userData.getUserById(req.params.id);
   } catch (e) {
-    res.status(404).json({ error: "User not found" });
+    res.status(404).json({error: 'User not found'});
     return;
   }
 

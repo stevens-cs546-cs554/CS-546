@@ -1,327 +1,269 @@
-const MongoClient = require("mongodb").MongoClient,
-  runStartup = require("./advanced_startup_docs.js"),
-  settings = require("./config.js");
-
-async function main() {
-  const allMovies = await runStartup();
-  console.log(
-    "After the advanced document setup has been complete, we have the following movies:"
-  );
-  console.log(allMovies);
-
-  const connection = await MongoClient.connect(settings.mongoConfig.serverUrl);
-  const db = await connection.db(settings.mongoConfig.database);
-  const movieCollection = db.collection("advancedMovies");
-
-  // simple stuff
-  exports.getAllMovies = async () => {
+const mongoCollections = require('./mongoCollections');
+const movies = mongoCollections.advancedMovies;
+module.exports = {
+  getAllMovies: async () => {
+    const movieCollection = await movies();
     return await movieCollection.find().toArray();
-  };
+  },
 
   // more simple stuff
-  exports.getMovie = async id => {
-    if (id === undefined) throw "You must provide an ID";
-    const movie = await movieCollection.findOne({ _id: id });
+  getMovie: async (id) => {
+    console.log('inGetMovie');
+    if (id === undefined) throw 'You must provide an ID';
+    const movieCollection = await movies();
+    const movie = await movieCollection.findOne({_id: id});
 
     if (!movie) {
-      throw "Could not find movie with id of " + id;
+      throw 'Could not find movie with id of ' + id;
     }
     return movie;
-  };
+  },
 
   // =================
   // Advanced finding
   // =================
 
   // We can query on subdocuments very easily
-  exports.findByDirector = async directorName => {
-    if (!directorName) throw "You must provide a director name";
-
+  findByDirector: async (directorName) => {
+    if (!directorName) throw 'You must provide a director name';
+    const movieCollection = await movies();
     // to query on a subdocument field, just provide the path to the field as a string key;
     // so when you have {info: {director: someName}}, just find on {"info.director": someName}
-    return await movieCollection
-      .find({ "info.director": directorName })
-      .toArray();
-  };
+    return await movieCollection.find({'info.director': directorName}).toArray();
+  },
 
   // For demonstration purposes, let's take an array of ratings and search by that
-  exports.findByRatings = async potentialRatings => {
-    if (!potentialRatings)
-      throw "You must provide an array of potentially matching ratings";
-
+  findByRatings: async (potentialRatings) => {
+    if (!potentialRatings) throw 'You must provide an array of potentially matching ratings';
+    const movieCollection = await movies();
     // ie, passing [3.2, 5] would find movies that have a rating field with 3.2 or 5
-    return await movieCollection
-      .find({ rating: { $in: potentialRatings } })
-      .toArray();
-  };
+    return await movieCollection.find({rating: {$in: potentialRatings}}).toArray();
+  },
 
-  exports.findMoviesReleasedBefore = async startingYear => {
+  findMoviesReleasedBefore: async (startingYear) => {
     // we can query numerically for things that are greater than, greater than or equal to, less than, and less than or equal to.
-    if (startingYear === undefined) throw "You must give a starting year";
+    if (startingYear === undefined) throw 'You must give a starting year';
+    const movieCollection = await movies();
+    return await movieCollection.find({'info.release': {$lt: startingYear}}).toArray();
+  },
 
-    return await movieCollection
-      .find({ "info.release": { $lt: startingYear } })
-      .toArray();
-  };
-
-  exports.findMoviesReleasedOnOrBefore = async startingYear => {
+  findMoviesReleasedOnOrBefore: async (startingYear) => {
     // we can query numerically for things that are greater than, greater than or equal to, less than, and less than or equal to.
-    if (startingYear === undefined) throw "You must give a starting year";
+    if (startingYear === undefined) throw 'You must give a starting year';
+    const movieCollection = await movies();
+    return await movieCollection.find({'info.release': {$lte: startingYear}}).toArray();
+  },
 
-    return await movieCollection
-      .find({ "info.release": { $lte: startingYear } })
-      .toArray();
-  };
-
-  exports.findMoviesReleasedAfter = async startingYear => {
+  findMoviesReleasedAfter: async (startingYear) => {
     // we can query numerically for things that are greater than, greater than or equal to, less than, and less than or equal to.
-    if (startingYear === undefined) throw "You must give a starting year";
+    if (startingYear === undefined) throw 'You must give a starting year';
+    const movieCollection = await movies();
+    return await movieCollection.find({'info.release': {$gt: startingYear}}).toArray();
+  },
 
-    return await movieCollection
-      .find({ "info.release": { $gt: startingYear } })
-      .toArray();
-  };
-
-  exports.findMoviesReleasedOnOrAfter = async startingYear => {
+  findMoviesReleasedOnOrAfter: async (startingYear) => {
     // we can query numerically for things that are greater than, greater than or equal to, less than, and less than or equal to.
-    if (startingYear === undefined) throw "You must give a starting year";
+    if (startingYear === undefined) throw 'You must give a starting year';
+    const movieCollection = await movies();
+    return movieCollection.find({'info.release': {$gte: startingYear}}).toArray();
+  },
 
-    return movieCollection
-      .find({ "info.release": { $gte: startingYear } })
-      .toArray();
-  };
-
-  exports.findMoviesWithDirectorAndYear = async (directorName, releaseYear) => {
-    if (!directorName) throw "You must provide a director name";
-    if (releaseYear === undefined) throw "You must give a release year";
+  findMoviesWithDirectorAndYear: async (directorName, releaseYear) => {
+    if (!directorName) throw 'You must provide a director name';
+    if (releaseYear === undefined) throw 'You must give a release year';
 
     // you can pass any number of arguments to your $and, meaning you can also query different
     // things on the same field -- you can check, for example, that it matches 2 text expression
     // or that it exists AND that it is less than a certain value
-
+    const movieCollection = await movies();
     // test with: findMoviesWithDirectorAndYear("Christopher Nolan", 2012)
     return await movieCollection
       .find({
-        $and: [
-          { "info.release": releaseYear },
-          { "info.director": directorName }
-        ]
+        $and: [{'info.release': releaseYear}, {'info.director': directorName}]
       })
       .toArray();
-  };
+  },
 
-  exports.findMoviesWithDirectorOrYear = async (directorName, releaseYear) => {
-    if (!directorName) throw "You must provide a director name";
-    if (releaseYear === undefined) throw "You must give a release year";
-
+  findMoviesWithDirectorOrYear: async (directorName, releaseYear) => {
+    if (!directorName) throw 'You must provide a director name';
+    if (releaseYear === undefined) throw 'You must give a release year';
+    const movieCollection = await movies();
     // you can pass any number of arguments to your $or, just like $and;
     // This works pretty much as you'd expect, and matches any documents that match ANY of the conditions
 
     // test with: findMoviesWithDirectorOrYear("Christopher Nolan", 2015)
     return await movieCollection
       .find({
-        $or: [
-          { "info.release": releaseYear },
-          { "info.director": directorName }
-        ]
+        $or: [{'info.release': releaseYear}, {'info.director': directorName}]
       })
       .toArray();
-  };
+  },
 
   // this is a VERY slow operation;
   // it has to traverse the whole collection
-  exports.searchByJavaScriptQuery = async keyword => {
-    if (!keyword) throw "You must provide a keyword";
-
+  searchByJavaScriptQuery: async (keyword) => {
+    if (!keyword) throw 'You must provide a keyword';
+    const movieCollection = await movies();
     return await movieCollection
       .find({
         $where: "this.title.toLowerCase().indexOf('" + keyword + "') >= 0"
       })
       .toArray();
-  };
+  },
 
   // =================
   // Advanced Updating
   // =================
 
-  exports.updateTitle = async (id, newTitle) => {
-    if (id === undefined) throw "No id provided";
-    if (!newTitle) throw "No title provided";
-
+  updateTitle: async (id, newTitle) => {
+    if (id === undefined) throw 'No id provided';
+    if (!newTitle) throw 'No title provided';
+    const movieCollection = await movies();
     // we use $set to update only the fields specified
-    await movieCollection.update({ _id: id }, { $set: { title: newTitle } });
-    return await exports.getMovie(id);
-  };
+    return await movieCollection.updateOne({_id: id}, {$set: {title: newTitle}}).then(async function() {
+      return await module.exports.getMovie(id);
+    });
+  },
 
-  exports.updateDirector = function(id, newDirector) {
-    if (id === undefined) return Promise.reject("No id provided");
-    if (!newDirector) return Promise.reject("No newDirector provided");
-
+  updateDirector: async function(id, newDirector) {
+    if (id === undefined) return Promise.reject('No id provided');
+    if (!newDirector) return Promise.reject('No newDirector provided');
+    const movieCollection = await movies();
     // we use $set to update only the fields specified
-    return movieCollection
-      .update({ _id: id }, { $set: { "info.director": newDirector } })
-      .then(function() {
-        return exports.getMovie(id);
-      });
-  };
+    return movieCollection.updateOne({_id: id}, {$set: {'info.director': newDirector}}).then(function() {
+      return module.exports.getMovie(id);
+    });
+  },
 
-  exports.bumpReleaseYearUp = function(id) {
-    if (id === undefined) return Promise.reject("No id provided");
-
+  bumpReleaseYearUp: async function(id) {
+    if (id === undefined) return Promise.reject('No id provided');
+    const movieCollection = await movies();
     // Can increment positively or negatively by any value
-    return movieCollection
-      .update({ _id: id }, { $inc: { "info.release": 1 } })
-      .then(function() {
-        return exports.getMovie(id);
-      });
-  };
+    return movieCollection.updateOne({_id: id}, {$inc: {'info.release': 1}}).then(function() {
+      return module.exports.getMovie(id);
+    });
+  },
 
-  exports.doubleRating = function(id) {
-    if (id === undefined) return Promise.reject("No id provided");
-
+  doubleRating: async function(id) {
+    if (id === undefined) return Promise.reject('No id provided');
+    const movieCollection = await movies();
     // Can multiply positively or negatively by any value
-    return movieCollection
-      .update({ _id: id }, { $mul: { rating: 2 } })
-      .then(function() {
-        return exports.getMovie(id);
-      });
-  };
+    return movieCollection.updateOne({_id: id}, {$mul: {rating: 2}}).then(function() {
+      return module.exports.getMovie(id);
+    });
+  },
 
-  exports.removeRating = function(id) {
-    if (id === undefined) return Promise.reject("No id provided");
+  removeRating: async function(id) {
+    if (id === undefined) return Promise.reject('No id provided');
+    const movieCollection = await movies();
+    return movieCollection.updateOne({_id: id}, {$unset: {rating: ''}}).then(function() {
+      return module.exports.getMovie(id);
+    });
+  },
 
-    return movieCollection
-      .update({ _id: id }, { $unset: { rating: "" } })
-      .then(function() {
-        return exports.getMovie(id);
-      });
-  };
-
-  exports.updateRatingToMinValue = function(id, newRating) {
-    if (id === undefined) return Promise.reject("No id provided");
-    if (newRating === undefined) return Promise.reject("no rating provided");
-
+  updateRatingToMinValue: async function(id, newRating) {
+    if (id === undefined) return Promise.reject('No id provided');
+    if (newRating === undefined) return Promise.reject('no rating provided');
+    const movieCollection = await movies();
     // if the value is higher than newRating, it will change to newRating; otherwise, it
     // will stay as is
-    return movieCollection
-      .update({ _id: id }, { $min: { rating: newRating } })
-      .then(function() {
-        return exports.getMovie(id);
-      });
-  };
+    return movieCollection.updateOne({_id: id}, {$min: {rating: newRating}}).then(function() {
+      return module.exports.getMovie(id);
+    });
+  },
 
-  exports.updateRatingToMaxValue = function(id, newRating) {
-    if (id === undefined) return Promise.reject("No id provided");
-    if (newRating === undefined) return Promise.reject("no rating provided");
-
+  updateRatingToMaxValue: async function(id, newRating) {
+    if (id === undefined) return Promise.reject('No id provided');
+    if (newRating === undefined) return Promise.reject('no rating provided');
+    const movieCollection = await movies();
     // if the value is lower than newRating, it will change to newRating; otherwise, it
     // will stay as is
-    return movieCollection
-      .update({ _id: id }, { $max: { rating: newRating } })
-      .then(function() {
-        return exports.getMovie(id);
-      });
-  };
+    return movieCollection.updateOne({_id: id}, {$max: {rating: newRating}}).then(function() {
+      return module.exports.getMovie(id);
+    });
+  },
 
   // =================
   // Array based querying
   // =================
 
-  exports.findByCast = function(name) {
-    if (!name)
-      return Promise.reject("You must provide a name for the cast member");
+  findByCast: async function(name) {
+    if (!name) return Promise.reject('You must provide a name for the cast member');
+    const movieCollection = await movies();
+    return movieCollection.find({cast: name}).toArray();
+  },
 
-    return movieCollection.find({ cast: name }).toArray();
-  };
-
-  exports.findByReviewerName = function(reviewerName) {
-    if (!reviewerName)
-      return Promise.reject("You must provide a name for the reviewer");
-
+  findByReviewerName: async function(reviewerName) {
+    if (!reviewerName) return Promise.reject('You must provide a name for the reviewer');
+    const movieCollection = await movies();
     // pass 'Phil' or 'Sallie' to find multiple matches, or 'Definitely Not Leo' to find a suspicious review.
-    return movieCollection.find({ "reviews.reviewer": reviewerName }).toArray();
+    return movieCollection.find({'reviews.reviewer': reviewerName}).toArray();
     // alternatively, we can pass an entire document describing our subdocument in our array using $elemMatch
     //            return movieCollection.find({ "reviews": { $elemMatch: { "reviewer": reviewerName } } }).toArray();
-  };
+  },
 
   // =================
   // Updating arrays
   // =================
 
-  exports.addCastMemberIfNotExists = function(id, newCastMember) {
-    if (id === undefined) return Promise.reject("No id provided");
-    if (newCastMember === undefined)
-      return Promise.reject("no newCastMember provided");
-
+  addCastMemberIfNotExists: async function(id, newCastMember) {
+    if (id === undefined) return Promise.reject('No id provided');
+    if (newCastMember === undefined) return Promise.reject('no newCastMember provided');
+    const movieCollection = await movies();
     // if our new cast member is already listed, this will be ignored
     // Try it out -- add Matthew McConaughey
-    return movieCollection
-      .update({ _id: id }, { $addToSet: { cast: newCastMember } })
-      .then(function() {
-        return exports.getMovie(id);
-      });
-  };
+    return movieCollection.updateOne({_id: id}, {$addToSet: {cast: newCastMember}}).then(function() {
+      //return getMovie(id);
+    });
+  },
 
-  exports.addCastMemberAllowDuplicates = function(id, newCastMember) {
-    if (id === undefined) return Promise.reject("No id provided");
-    if (newCastMember === undefined)
-      return Promise.reject("no newCastMember provided");
-
+  addCastMemberAllowDuplicates: async function(id, newCastMember) {
+    if (id === undefined) return Promise.reject('No id provided');
+    if (newCastMember === undefined) return Promise.reject('no newCastMember provided');
+    const movieCollection = await movies();
     // if our new cast member is already listed, we will be left with 2 copies of them
     // Try this a few times. Remember, you can never have enough Matthew McConaughey
-    return movieCollection
-      .update({ _id: id }, { $push: { cast: newCastMember } })
-      .then(function() {
-        return exports.getMovie(id);
-      });
-  };
+    return movieCollection.updateOne({_id: id}, {$push: {cast: newCastMember}}).then(function() {
+      return module.exports.getMovie(id);
+    });
+  },
 
-  exports.popLastCastMember = function(id) {
-    if (id === undefined) return Promise.reject("No id provided");
-
+  popLastCastMember: async function(id) {
+    if (id === undefined) return Promise.reject('No id provided');
+    const movieCollection = await movies();
     // removes last
-    return movieCollection
-      .update({ _id: id }, { $pop: { cast: 1 } })
-      .then(function() {
-        return exports.getMovie(id);
-      });
-  };
+    return movieCollection.updateOne({_id: id}, {$pop: {cast: 1}}).then(function() {
+      return module.exports.getMovie(id);
+    });
+  },
 
-  exports.popFirstCastMember = function(id) {
-    if (id === undefined) return Promise.reject("No id provided");
-
+  popFirstCastMember: async function(id) {
+    if (id === undefined) return Promise.reject('No id provided');
+    const movieCollection = await movies();
     // removes first
-    return movieCollection
-      .update({ _id: id }, { $pop: { cast: -1 } })
-      .then(function() {
-        return exports.getMovie(id);
-      });
-  };
+    return movieCollection.updateOne({_id: id}, {$pop: {cast: -1}}).then(function() {
+      return module.exports.getMovie(id);
+    });
+  },
 
   // We can also remove based on value, or by matching fields the same way we can query for documents
-  exports.removeCastMember = function(id, memberToRemove) {
-    if (id === undefined) return Promise.reject("No id provided");
-    if (!memberToRemove) return Promise.reject("No memberToRemove provided");
-
+  removeCastMember: async function(id, memberToRemove) {
+    if (id === undefined) return Promise.reject('No id provided');
+    if (!memberToRemove) return Promise.reject('No memberToRemove provided');
+    const movieCollection = await movies();
     // removes all matching array entry; remember, if you add
     // you can use $pullAll to pull multiple entries
-    return movieCollection
-      .update({ _id: id }, { $pull: { cast: memberToRemove } })
-      .then(function() {
-        return exports.getMovie(id);
-      });
-  };
+    return movieCollection.updateOne({_id: id}, {$pull: {cast: memberToRemove}}).then(function() {
+      return module.exports.getMovie(id);
+    });
+  },
 
-  exports.removeReview = function(id, reviewId) {
-    if (id === undefined) return Promise.reject("No id provided");
-    if (!reviewId) return Promise.reject("No reviewId provided");
-
-    return movieCollection
-      .update({ _id: id }, { $pull: { reviews: { _id: reviewId } } })
-      .then(function() {
-        return exports.getMovie(id);
-      });
-  };
-}
-
-main();
+  removeReview: async function(id, reviewId) {
+    if (id === undefined) return Promise.reject('No id provided');
+    if (!reviewId) return Promise.reject('No reviewId provided');
+    const movieCollection = await movies();
+    return movieCollection.updateOne({_id: id}, {$pull: {reviews: {_id: reviewId}}}).then(function() {
+      return module.exports.getMovie(id);
+    });
+  }
+};

@@ -1,7 +1,7 @@
-const mongoCollections = require("../config/mongoCollections");
+const mongoCollections = require('../config/mongoCollections');
 const posts = mongoCollections.posts;
-const users = require("./users");
-const uuid = require("uuid/v4");
+const users = require('./users');
+const uuid = require('uuid/v4');
 
 const exportedMethods = {
   async getAllPosts() {
@@ -9,21 +9,21 @@ const exportedMethods = {
     return await postCollection.find({}).toArray();
   },
   async getPostsByTag(tag) {
-    if (!tag) throw "No tag provided";
+    if (!tag) throw 'No tag provided';
 
     const postCollection = await posts();
-    return await postCollection.find({ tags: tag }).toArray();
+    return await postCollection.find({tags: tag}).toArray();
   },
   async getPostById(id) {
     const postCollection = await posts();
-    const post = await postCollection.findOne({ _id: id });
+    const post = await postCollection.findOne({_id: id});
 
-    if (!post) throw "Post not found";
+    if (!post) throw 'Post not found';
     return post;
   },
   async addPost(title, body, tags, posterId) {
-    if (typeof title !== "string") throw "No title provided";
-    if (typeof body !== "string") throw "I aint got nobody!";
+    if (typeof title !== 'string') throw 'No title provided';
+    if (typeof body !== 'string') throw 'I aint got nobody!';
 
     if (!Array.isArray(tags)) {
       tags = [];
@@ -50,7 +50,7 @@ const exportedMethods = {
   },
   async removePost(id) {
     const postCollection = await posts();
-    const deletionInfo = await postCollection.removeOne({ _id: id });
+    const deletionInfo = await postCollection.removeOne({_id: id});
     if (deletionInfo.deletedCount === 0) {
       throw `Could not delete post with id of ${id}`;
     }
@@ -78,7 +78,7 @@ const exportedMethods = {
     const query = {
       _id: id
     };
-    await postCollection.updateOne(query, updateCommand);
+    await postCollection.updateOne(query, {$set: updateCommand});
 
     return await this.getPostById(id);
   },
