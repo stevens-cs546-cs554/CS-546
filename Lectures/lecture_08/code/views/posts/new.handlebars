@@ -19,7 +19,9 @@
     </label>
     <select class="full-width-input" name="posterId">
       <option value="">Select User...</option>
-      <option value="ee9c1ebb-a589-4075-a9a9-e6ee38145f67">Phil</option>
+      {{#each users}}
+        <option value="{{_id}}">{{firstName}} {{lastName}}</option>
+      {{/each}}
     </select>
     <label>
       <input type="radio" name="user-test" value="1" /> One

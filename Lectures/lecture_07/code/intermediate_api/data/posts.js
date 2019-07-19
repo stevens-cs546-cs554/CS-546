@@ -46,14 +46,26 @@ const exportedMethods = {
 
     const newInsertInformation = await postCollection.insertOne(newPost);
     const newId = newInsertInformation.insertedId;
+
+    await users.addPostToUser(posterId, newId, title);
+
     return await this.getPostById(newId);
   },
   async removePost(id) {
     const postCollection = await posts();
+    let post = null;
+    try {
+      post = await this.getPostById(id);
+    } catch (e) {
+      console.log(e);
+      return;
+    }
     const deletionInfo = await postCollection.removeOne({_id: id});
     if (deletionInfo.deletedCount === 0) {
       throw `Could not delete post with id of ${id}`;
     }
+    await users.removePostFromUser(post.poster.id, id);
+    return true;
   },
   async updatePost(id, updatedPost) {
     const postCollection = await posts();
@@ -72,27 +84,22 @@ const exportedMethods = {
       updatedPostData.body = updatedPost.body;
     }
 
-    let updateCommand = {
-      $set: updatedPostData
-    };
-    const query = {
-      _id: id
-    };
-    await postCollection.updateOne(query, {$set: updateCommand});
+    await postCollection.updateOne({_id: id}, {$set: updatedPostData});
 
     return await this.getPostById(id);
   },
   async renameTag(oldTag, newTag) {
+    if (oldTag === newTag) throw 'tags are the same';
     let findDocuments = {
       tags: oldTag
     };
 
     let firstUpdate = {
-      $pull: oldTag
+      $addToSet: {tags: newTag}
     };
 
     let secondUpdate = {
-      $addToSet: newTag
+      $pull: {tags: oldTag}
     };
 
     const postCollection = await posts();

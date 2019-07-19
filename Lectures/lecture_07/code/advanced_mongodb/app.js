@@ -2,7 +2,7 @@ const advMongo = require('./advanced_mongo');
 const startUpDocs = require('./advanced_startup_docs');
 
 async function main() {
-  //First lets run the start up to create the data in the DB
+  //First lets run the start up to create the data in the DB Can be commented out after first run to perserve DB
   const startUp = await startUpDocs.runSetup();
 
   //Now we can experiment calling the advanced query functions.

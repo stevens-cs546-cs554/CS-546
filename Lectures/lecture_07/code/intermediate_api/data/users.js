@@ -5,9 +5,9 @@ const uuid = require('uuid/v4');
 let exportedMethods = {
   async getAllUsers() {
     const userCollection = await users();
-    const users = await userCollection.find({}).toArray();
-    if (!users) throw 'No users in system!';
-    return users;
+    const userList = await userCollection.find({}).toArray();
+    if (!userList) throw 'No users in system!';
+    return userList;
   },
   // This is a fun new syntax that was brought forth in ES6, where we can define
   // methods on an object with this shorthand!

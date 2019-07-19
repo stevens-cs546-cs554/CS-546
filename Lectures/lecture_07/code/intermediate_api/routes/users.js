@@ -5,7 +5,7 @@ const userData = data.users;
 
 router.get('/:id', async (req, res) => {
   try {
-    const user = await userData.getUserById(req.params.id);
+    let user = await userData.getUserById(req.params.id);
     res.json(user);
   } catch (e) {
     res.status(404).json({error: 'User not found'});
@@ -14,7 +14,7 @@ router.get('/:id', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const userList = await userData.getAllUsers();
+    let userList = await userData.getAllUsers();
     res.json(userList);
   } catch (e) {
     res.sendStatus(500);
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const userInfo = req.body;
+  let userInfo = req.body;
 
   if (!userInfo) {
     res.status(400).json({error: 'You must provide data to create a user'});
@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  const userInfo = req.body;
+  let userInfo = req.body;
 
   if (!userInfo) {
     res.status(400).json({error: 'You must provide data to update a user'});
@@ -71,7 +71,6 @@ router.put('/:id', async (req, res) => {
     res.status(404).json({error: 'User not found'});
     return;
   }
-
   try {
     const updatedUser = await userData.updateUser(req.params.id, userInfo);
     res.json(updatedUser);
@@ -93,7 +92,6 @@ router.delete('/:id', async (req, res) => {
     res.sendStatus(200);
   } catch (e) {
     res.sendStatus(500);
-    return;
   }
 });
 
