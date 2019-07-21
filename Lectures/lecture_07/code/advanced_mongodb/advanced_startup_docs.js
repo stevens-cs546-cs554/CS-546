@@ -1,6 +1,6 @@
 const connection = require('./mongoConnection');
 
-const Guid = require('guid');
+const uuid = require('uuid');
 
 async function runSetup() {
   const db = await connection();
@@ -31,7 +31,7 @@ async function runSetup() {
 
   const addReview = function(movie, title, comment, reviewer, rating) {
     const newReview = {
-      _id: Guid.create().toString(),
+      _id: uuid.v4(),
       title: title,
       comment: comment,
       reviewer: reviewer,

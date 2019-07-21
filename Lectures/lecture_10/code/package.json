@@ -20,11 +20,10 @@
   "dependencies": {
     "bcrypt": "^3.0.6",
     "bluebird": "^3.5.1",
-    "body-parser": "^1.14.2",
     "cookie-parser": "^1.4.1",
     "ejs": "^2.4.1",
-    "express": "^4.13.4",
-    "mongodb": "^3.2.7",
+    "express": "^4.17.1",
+    "mongodb": "^3.3.0-beta2",
     "request-promise": "^4.2.4"
   }
 }
