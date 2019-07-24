@@ -4,70 +4,57 @@ const users = require('./users');
 const uuid = require('uuid');
 
 let exportedMethods = {
-  getAllPosts() {
-    return posts().then((postCollection) => {
-      return postCollection.find({}).toArray();
-    });
+  async getAllPosts() {
+    const postCollection = await posts();
+    return await postCollection.find({}).toArray();
   },
-  getPostById(id) {
-    return posts().then((postCollection) => {
-      return postCollection.findOne({_id: id}).then((post) => {
-        if (!post) throw 'Post not found';
-        return post;
-      });
-    });
-  },
-  addPost(title, body, posterId) {
-    return posts().then((postCollection) => {
-      return users.getUserById(posterId).then((userThatPosted) => {
-        let newPost = {
-          title: title,
-          body: body,
-          poster: {
-            id: posterId,
-            name: `${userThatPosted.firstName} ${userThatPosted.lastName}`
-          },
-          _id: uuid.v4()
-        };
+  async getPostById(id) {
+    const postCollection = await posts();
+    const post = await postCollection.findOne({_id: id});
 
-        return postCollection
-          .insertOne(newPost)
-          .then((newInsertInformation) => {
-            return newInsertInformation.insertedId;
-          })
-          .then((newId) => {
-            return this.getPostById(newId);
-          });
-      });
-    });
+    if (!post) throw 'Post not found';
+    return post;
   },
-  removePost(id) {
-    return posts().then((postCollection) => {
-      return postCollection.removeOne({_id: id}).then((deletionInfo) => {
-        if (deletionInfo.deletedCount === 0) {
-          throw `Could not delete post with id of ${id}`;
-        } else {
-        }
-      });
-    });
-  },
-  updatePost(id, title, body, posterId) {
-    return posts().then((postCollection) => {
-      return users.getUserById(posterId).then((userThatPosted) => {
-        let updatedPost = {
-          title: title,
-          body: body,
-          poster: {
-            id: posterId,
-            name: userThatPosted.name
-          }
-        };
+  async addPost(title, body, posterId) {
+    const postCollection = await posts();
+    const userThatPosted = await users.getUserById(posterId);
 
-        return postCollection.updateOne({_id: id}, {$set: updatedPost}).then((result) => {
-          return this.getPostById(id);
-        });
-      });
-    });
+    let newPost = {
+      title: title,
+      body: body,
+      poster: {
+        id: posterId,
+        name: `${userThatPosted.firstName} ${userThatPosted.lastName}`
+      },
+      _id: uuid.v4()
+    };
+
+    const newInsertInformation = await postCollection.insertOne(newPost);
+    if (newInsertInformation.insertedCount === 0) throw 'Insert failed!';
+
+    return this.getPostById(newInsertInformation.insertedId);
+  },
+  async removePost(id) {
+    const postCollection = await posts();
+    const deletionInfo = await postCollection.removeOne({_id: id});
+    if (deletionInfo.deletedCount === 0) throw `Could not delete post with id of ${id}`;
+    return true;
+  },
+  async updatePost(id, title, body, posterId) {
+    const postCollection = await posts();
+    const userThatPosted = await users.getUserById(posterId);
+
+    let updatedPost = {
+      title: title,
+      body: body,
+      poster: {
+        id: posterId,
+        name: userThatPosted.name
+      }
+    };
+    const updateInfo = await postCollection.updateOne({_id: id}, {$set: updatedPost});
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Update failed';
+    return this.getPostById(id);
   }
 };
 
