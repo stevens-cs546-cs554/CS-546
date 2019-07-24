@@ -1,110 +1,98 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const data = require("../data");
+const data = require('../data');
 const userData = data.users;
 
-router.get("/:id", (req, res) => {
-  userData
-    .getUserById(req.params.id)
-    .then(user => {
-      res.json(user);
-    })
-    .catch(() => {
-      res.status(404).json({ error: "User not found" });
-    });
+router.get('/:id', async (req, res) => {
+  try {
+    let user = await userData.getUserById(req.params.id);
+    res.json(user);
+  } catch (e) {
+    res.status(404).json({error: 'User not found'});
+  }
 });
 
-router.get("/", (req, res) => {
-  userData.getAllUsers().then(
-    userList => {
-      res.json(userList);
-    },
-    () => {
-      // Something went wrong with the server!
-      res.sendStatus(500);
-    }
-  );
+router.get('/', async (req, res) => {
+  try {
+    let userList = await userData.getAllUsers();
+    res.json(userList);
+  } catch (e) {
+    res.sendStatus(500);
+  }
 });
 
-router.post("/", (req, res) => {
+router.post('/', async (req, res) => {
   let userInfo = req.body;
 
   if (!userInfo) {
-    res.status(400).json({ error: "You must provide data to create a user" });
+    res.status(400).json({error: 'You must provide data to create a user'});
     return;
   }
 
   if (!userInfo.firstName) {
-    res.status(400).json({ error: "You must provide a first name" });
+    res.status(400).json({error: 'You must provide a first name'});
     return;
   }
 
   if (!userInfo.lastName) {
-    res.status(400).json({ error: "You must provide a last name" });
+    res.status(400).json({error: 'You must provide a last name'});
     return;
   }
 
-  userData.addUser(userInfo.firstName, userInfo.lastName).then(
-    newUser => {
-      res.json(newUser);
-    },
-    () => {
-      res.sendStatus(500);
-    }
-  );
+  try {
+    const newUser = await userData.addUser(userInfo.firstName, userInfo.lastName);
+    res.json(newUser);
+  } catch (e) {
+    res.sendStatus(500);
+  }
 });
 
-router.put("/:id", (req, res) => {
+router.put('/:id', async (req, res) => {
   let userInfo = req.body;
 
   if (!userInfo) {
-    res.status(400).json({ error: "You must provide data to update a user" });
+    res.status(400).json({error: 'You must provide data to update a user'});
     return;
   }
 
   if (!userInfo.firstName) {
-    res.status(400).json({ error: "You must provide a first name" });
+    res.status(400).json({error: 'You must provide a first name'});
     return;
   }
 
   if (!userInfo.lastName) {
-    res.status(400).json({ error: "You must provide a last name" });
+    res.status(400).json({error: 'You must provide a last name'});
     return;
   }
 
-  let getUser = userData
-    .getUser(req.params.id)
-    .then(() => {
-      return userData.updateUser(req.params.id, userInfo).then(
-        updatedUser => {
-          res.json(updatedUser);
-        },
-        () => {
-          res.sendStatus(500);
-        }
-      );
-    })
-    .catch(() => {
-      res.status(404).json({ error: "User not found" });
-    });
+  try {
+    await userData.getUserById(req.params.id);
+  } catch (e) {
+    res.status(404).json({error: 'User not found'});
+    return;
+  }
+  try {
+    const updatedUser = await userData.updateUser(req.params.id, userInfo);
+    res.json(updatedUser);
+  } catch (e) {
+    res.sendStatus(500);
+  }
 });
 
-router.delete("/:id", (req, res) => {
-  let user = userData
-    .getUserById(req.params.id)
-    .then(() => {
-      return userData
-        .removePost(req.params.id)
-        .then(() => {
-          res.sendStatus(200);
-        })
-        .catch(() => {
-          res.sendStatus(500);
-        });
-    })
-    .catch(() => {
-      res.status(404).json({ error: "User not found" });
-    });
+router.delete('/:id', async (req, res) => {
+  try {
+    await userData.getUserById(req.params.id);
+  } catch (e) {
+    res.status(404).json({error: 'User not found'});
+    return;
+  }
+
+  try {
+    await userData.removeUser(req.params.id);
+    res.sendStatus(200);
+  } catch (e) {
+    res.sendStatus(500);
+  }
 });
 
 module.exports = router;

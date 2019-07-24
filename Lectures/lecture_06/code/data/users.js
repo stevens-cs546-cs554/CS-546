@@ -1,25 +1,25 @@
-const mongoCollections = require("../config/mongoCollections");
+const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
-const uuid = require("node-uuid");
+const uuid = require('uuid');
 
 let exportedMethods = {
   getAllUsers() {
-    return users().then(userCollection => {
+    return users().then((userCollection) => {
       return userCollection.find({}).toArray();
     });
   },
   // This is a fun new syntax that was brought forth in ES6, where we can define
   // methods on an object with this shorthand!
   getUserById(id) {
-    return users().then(userCollection => {
-      return userCollection.findOne({ _id: id }).then(user => {
-        if (!user) throw "User not found";
+    return users().then((userCollection) => {
+      return userCollection.findOne({_id: id}).then((user) => {
+        if (!user) throw 'User not found';
         return user;
       });
     });
   },
   addUser(firstName, lastName) {
-    return users().then(userCollection => {
+    return users().then((userCollection) => {
       let newUser = {
         firstName: firstName,
         lastName: lastName,
@@ -28,17 +28,17 @@ let exportedMethods = {
 
       return userCollection
         .insertOne(newUser)
-        .then(newInsertInformation => {
+        .then((newInsertInformation) => {
           return newInsertInformation.insertedId;
         })
-        .then(newId => {
+        .then((newId) => {
           return this.getUserById(newId);
         });
     });
   },
   removeUser(id) {
-    return users().then(userCollection => {
-      return userCollection.removeOne({ _id: id }).then(deletionInfo => {
+    return users().then((userCollection) => {
+      return userCollection.removeOne({_id: id}).then((deletionInfo) => {
         if (deletionInfo.deletedCount === 0) {
           throw `Could not delete user with id of ${id}`;
         }
@@ -46,18 +46,16 @@ let exportedMethods = {
     });
   },
   updateUser(id, firstName, lastName) {
-    return this.getUserById(id).then(currentUser => {
+    return this.getUserById(id).then((currentUser) => {
       let updatedUser = {
         firstName: firstName,
         lastName: lastName
       };
 
-      return users().then(userCollection => {
-        return userCollection
-          .updateOne({ _id: id }, { $set: updatedUser })
-          .then(() => {
-            return this.getUserById(id);
-          });
+      return users().then((userCollection) => {
+        return userCollection.updateOne({_id: id}, {$set: updatedUser}).then(() => {
+          return this.getUserById(id);
+        });
       });
     });
   }

@@ -11,10 +11,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "express-handlebars": "^3.0.0",
-    "mongodb": "^3.2.7",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "handlebars": "^4.1.2",
+    "mongodb": "^3.3.0-beta2",
     "uuid": "^3.3.2"
   }
 }

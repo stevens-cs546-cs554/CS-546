@@ -1,6 +1,6 @@
 <article class="post">
   <h1>{{ post.title }}</h1>
-  <address>Posted by <a href="" rel="author">{{post.poster.name}}</a></address>
+  <address>Posted by {{post.poster.name}}</address>
   <p>{{ post.body }}</p>
 
   {{#if post.tags.length}}
@@ -11,4 +11,5 @@
       {{/each}}
     </ul>
   {{/if}}
+  <a href="/posts">Back to All Posts</a>
 </article>

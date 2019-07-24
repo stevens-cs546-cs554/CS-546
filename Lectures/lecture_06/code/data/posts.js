@@ -1,25 +1,25 @@
-const mongoCollections = require("../config/mongoCollections");
+const mongoCollections = require('../config/mongoCollections');
 const posts = mongoCollections.posts;
-const users = require("./users");
-const uuid = require("node-uuid");
+const users = require('./users');
+const uuid = require('uuid');
 
 let exportedMethods = {
   getAllPosts() {
-    return posts().then(postCollection => {
+    return posts().then((postCollection) => {
       return postCollection.find({}).toArray();
     });
   },
   getPostById(id) {
-    return posts().then(postCollection => {
-      return postCollection.findOne({ _id: id }).then(post => {
-        if (!post) throw "Post not found";
+    return posts().then((postCollection) => {
+      return postCollection.findOne({_id: id}).then((post) => {
+        if (!post) throw 'Post not found';
         return post;
       });
     });
   },
   addPost(title, body, posterId) {
-    return posts().then(postCollection => {
-      return users.getUserById(posterId).then(userThatPosted => {
+    return posts().then((postCollection) => {
+      return users.getUserById(posterId).then((userThatPosted) => {
         let newPost = {
           title: title,
           body: body,
@@ -32,18 +32,18 @@ let exportedMethods = {
 
         return postCollection
           .insertOne(newPost)
-          .then(newInsertInformation => {
+          .then((newInsertInformation) => {
             return newInsertInformation.insertedId;
           })
-          .then(newId => {
+          .then((newId) => {
             return this.getPostById(newId);
           });
       });
     });
   },
   removePost(id) {
-    return posts().then(postCollection => {
-      return postCollection.removeOne({ _id: id }).then(deletionInfo => {
+    return posts().then((postCollection) => {
+      return postCollection.removeOne({_id: id}).then((deletionInfo) => {
         if (deletionInfo.deletedCount === 0) {
           throw `Could not delete post with id of ${id}`;
         } else {
@@ -52,8 +52,8 @@ let exportedMethods = {
     });
   },
   updatePost(id, title, body, posterId) {
-    return posts().then(postCollection => {
-      return users.getUserById(posterId).then(userThatPosted => {
+    return posts().then((postCollection) => {
+      return users.getUserById(posterId).then((userThatPosted) => {
         let updatedPost = {
           title: title,
           body: body,
@@ -63,11 +63,9 @@ let exportedMethods = {
           }
         };
 
-        return postCollection
-          .updateOne({ _id: id }, { $set: updatedPost })
-          .then(result => {
-            return this.getPostById(id);
-          });
+        return postCollection.updateOne({_id: id}, {$set: updatedPost}).then((result) => {
+          return this.getPostById(id);
+        });
       });
     });
   }
