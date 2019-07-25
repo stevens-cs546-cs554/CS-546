@@ -12,7 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
-    "mongodb": "^3.2.7",
+    "mongodb": "^3.3.0-beta2",
     "uuid": "^3.3.2"
   }
 }
