@@ -1,10 +1,9 @@
 {
-  "name": "lecture_10",
+  "name": "lecture_11",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "seed": "node ./tasks/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
