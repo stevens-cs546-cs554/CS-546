@@ -78,10 +78,10 @@ Our lecture slides give many tags and examples of how to use them properly, so f
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>About Phil</title>
+    <title>About Patrick</title>
   </head>
   <body>
-    <h1>I am Phil</h1>
+    <h1>I am Patrick</h1>
     <header>
       <nav>
         <ul>
