@@ -1,15 +1,10 @@
 # Welcome to CS-546!
+Here you will find the lecture slides as well as the lecture code for each lecture.
 
-## Current Semester: Summer 2019 A / B
+## Current Semester: Spring 2020 A/B/WS Sections 
 
-## In Person
 
-## Webcampus (CS-546-WS)
-
-CS-546-WS will run on Fridays during the Summer Schedule, with Lecture 1 on Friday, May 25th and Lecture 14 on {TBD}.
 
 ### Slack
 
-Slack Communication for CS-546-WS may only be done on the CS-546-554-WS Slack Room.
-
-Currently, Slack is not allowing me to create a chatroom.
+Slack Communication for CS-546-WS 
