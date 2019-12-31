@@ -7,4 +7,4 @@ Here you will find the lecture slides as well as the lecture code for each lectu
 
 ### Slack
 
-Slack Communication for CS-546-WS 
+We use Slack for course communication.  You will find the invitation link on Canvas in the course modules. 
