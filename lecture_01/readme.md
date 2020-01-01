@@ -25,6 +25,7 @@ There will be some reading for this course; I will often point you to documentat
 | Labs                        | 30%     | Labs will be weighted equally. Labs will be given most weeks and cover the content learned that week.                                                          |
 | Final Project Proposal      | 5%      | Students will form groups and propose a final project to work on throughout the semester.                                                                      |
 | Database Proposal           | 5%      | Each group will submit a proposal for their database collections and schema.                                                                                    |
+| Project Pitch Presentation                        | 10%     | Labs will be weighted equally. Labs will be given most weeks and cover the content learned that week.                                                          |
 | Final Project Presentation  | 5%     | You will give a technical presentation showcasing your project’s features and technological decisions.                                                         |
 | Final Project Result & Code | 40%     | Each group will submit their project code, a readme, and a database dump to be reviewed and graded based on what was promised in their proposal and delivered. |
 
