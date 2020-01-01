@@ -25,7 +25,7 @@ There will be some reading for this course; I will often point you to documentat
 | Labs                        | 30%     | Labs will be weighted equally. Labs will be given most weeks and cover the content learned that week.                                                          |
 | Final Project Proposal      | 5%      | Students will form groups and propose a final project to work on throughout the semester.                                                                      |
 | In-class exercises           | 5%      | Students will hav in-class exercices or quizzes
-                                      |
+                                        | 
 | Database Proposal           | 5%      | Each group will submit a proposal for their database collections and schema.                                                                                    |
 | Project Pitch Presentation           | 10%      | Each group will present their project idea for the project pitch
                                       |
