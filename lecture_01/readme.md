@@ -27,7 +27,7 @@ There will be some reading for this course; I will often point you to documentat
 | In-class exercises           | 5%      | Students will hav in-class exercices or quizzes
 | Database Proposal           | 5%      | Each group will submit a proposal for their database collections and schema.                                                                                    |
 | Project Pitch Presentation           | 10%      | Each group will present their project idea for the project pitch
-                                      
+                                      |                                     
 | Final Project Presentation  | 5%     | You will give a technical presentation showcasing your project’s features and technological decisions.                                                         |
 | Final Project Result & Code | 40%     | Each group will submit their project code, a readme, and a database dump to be reviewed and graded based on what was promised in their proposal and delivered. |
 
