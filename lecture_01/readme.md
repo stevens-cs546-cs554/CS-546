@@ -32,7 +32,7 @@ There will be some reading for this course; I will often point you to documentat
 
 ### Other Notes
 
-Late assignments are graded with a **_15 point penalty per day_**. Furthermore, **_failure to submit a portion of the final project on time will result in an automatic 25 point per day penalty for that portion of the project_**.
+Late assignments are graded with a **_15 point penalty per day_**. Furthermore, **_failure to submit a portion of the final project on time will result in an 25 point per day penalty for that portion of the project_**.
 
 
 ### Assignment Instructions Are Very Explicit
