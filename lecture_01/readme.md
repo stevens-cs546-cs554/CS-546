@@ -28,7 +28,7 @@ There will be some reading for this course; I will often point you to documentat
 | Database Proposal           | 5%      | Each group will submit a proposal for their database collections and schema.                                                                                    |
 | Project Pitch Presentation                        | 10%     | Each group will give a non-technical in-class presentation about their project, explaining what use case it solves, who the audience is, and why it’s a worthwhile project.                                                          |
 | Final Project Presentation  | 5%     | You will give a technical presentation showcasing your project’s features and technological decisions.                                                         |
-| Final Project Result & Code | 40%     | Each group will submit their project code, a readme, and a database dump to be reviewed and graded based on what was promised in their proposal and delivered. |
+| Final Project Result & Code | 40%     | Each group will submit their project code, a readme, and a database seed file to be reviewed and graded based on what was promised in their proposal and delivered. |
 
 ### Other Notes
 
