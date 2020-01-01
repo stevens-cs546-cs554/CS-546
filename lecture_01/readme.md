@@ -26,7 +26,8 @@ There will be some reading for this course; I will often point you to documentat
 | In-Class Exercises/Quizzes                        | 5%     | Most weeks we will either have an in-class exercises or a quiz. You need to be present in class to to do the exercise or quiz                                                          |
 | Final Project Proposal      | 5%      | Students will form groups and propose a final project to work on throughout the semester.                                                                      |
 | Database Proposal           | 5%      | Each group will submit a proposal for their database collections and schema.                                                                                    |
-| Project Pitch Presentation                        | 10%     | Labs will be weighted equally. Labs will be given most weeks and cover the content learned that week.                                                          |
+| Project Pitch Presentation                        | 10%     | Each group will give a non-technical in-class presentation about their project, explaining what use case it solves, who the audience is, and why it’s a worthwhile project.
+                                                          |
 | Final Project Presentation  | 5%     | You will give a technical presentation showcasing your project’s features and technological decisions.                                                         |
 | Final Project Result & Code | 40%     | Each group will submit their project code, a readme, and a database dump to be reviewed and graded based on what was promised in their proposal and delivered. |
 
