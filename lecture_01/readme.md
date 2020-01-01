@@ -22,17 +22,19 @@ There will be some reading for this course; I will often point you to documentat
 
 | Material                    | Percent | Comments                                                                                                                                                       |
 | --------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Labs                        | 40%     | Labs will be weighted equally. Labs will be given most weeks and cover the content learned that week.                                                          |
+| Labs                        | 30%     | Labs will be weighted equally. Labs will be given most weeks and cover the content learned that week.                                                          |
 | Final Project Proposal      | 5%      | Students will form groups and propose a final project to work on throughout the semester.                                                                      |
-| Database Proposal           | 5%      | Each group will submit a proposal for their database collections and schema                                                                                    |
-| Final Project Presentation  | 10%     | You will give a technical presentation showcasing your project’s features and technological decisions.                                                         |
+| In-class exercises           | 5%      | Students will hav in-class exercices or quizzes
+| Database Proposal           | 5%      | Each group will submit a proposal for their database collections and schema.                                                                                    |
+| Project Pitch Presentation           | 10%      | Each group will present their project idea for the project pitch
+                                      |
+| Final Project Presentation  | 5%     | You will give a technical presentation showcasing your project’s features and technological decisions.                                                         |
 | Final Project Result & Code | 40%     | Each group will submit their project code, a readme, and a database dump to be reviewed and graded based on what was promised in their proposal and delivered. |
 
 ### Other Notes
 
-Late assignments are graded with a **_15 point penalty per day_**. Furthermore, **_failure to submit a portion of the final project on time will result in an automatic 0 for that portion of the project_**.
+Late assignments are graded with a **_15 point penalty per day_**. Furthermore, **_failure to submit a portion of the final project on time will result in an automatic 25 point per day penalty for that portion of the project_**.
 
-Obviously, "life happens"; if you require additional time to complete an assignment or a life situation happens, let me know and I will consider an extension. The more time in advance you let me know about your extension request, the more likely I am to grant the extension.
 
 ### Assignment Instructions Are Very Explicit
 
