@@ -13,3 +13,5 @@ console.log(toThePowerOf);
 
 let multipliedString = multiplied.toString();
 console.log(multipliedString);
+
+console.log(multipliedString + 5);
