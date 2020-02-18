@@ -2,77 +2,78 @@ const mongoCollections = require('./mongoCollections');
 const dogs = mongoCollections.dogs;
 
 module.exports = {
-  // This is a fun new syntax that was brought forth in ES6, where we can define
-  // methods on an object with this shorthand!
-  async getDogById(id) {
-    if (!id) throw 'You must provide an id to search for';
+	// This is a fun new syntax that was brought forth in ES6, where we can define
+	// methods on an object with this shorthand!
+	async getDogById(id) {
+		if (!id) throw 'You must provide an id to search for';
 
-    const dogCollection = await dogs();
-    const doggo = await dogCollection.findOne({_id: id});
-    if (doggo === null) throw 'No dog with that id';
+		const dogCollection = await dogs();
+		const doggo = await dogCollection.findOne({ _id: id });
+		if (doggo === null) throw 'No dog with that id';
 
-    return doggo;
-  },
+		return doggo;
+	},
 
-  async getAllDogs() {
-    const dogCollection = await dogs();
+	async getAllDogs() {
+		const dogCollection = await dogs();
 
-    const dogs = await dogCollection.find({}).toArray();
+		const dogList = await dogCollection.find({}).toArray();
 
-    return dogs;
-  },
+		return dogList;
+	},
 
-  async addDog(name, breeds) {
-    if (!name) throw 'You must provide a name for your dog';
+	async addDog(name, breeds) {
+		if (!name) throw 'You must provide a name for your dog';
 
-    if (!breeds || !Array.isArray(breeds)) throw 'You must provide an array of breeds';
+		if (!breeds || !Array.isArray(breeds)) throw 'You must provide an array of breeds';
 
-    if (breeds.length === 0) throw 'You must provide at least one breed.';
-    const dogCollection = await dogs();
+		if (breeds.length === 0) throw 'You must provide at least one breed.';
+		const dogCollection = await dogs();
 
-    let newDog = {
-      name: name,
-      breeds: breeds
-    };
+		let newDog = {
+			name: name,
+			breeds: breeds
+		};
 
-    const insertInfo = await dogCollection.insertOne(newDog);
-    if (insertInfo.insertedCount === 0) throw 'Could not add dog';
+		const insertInfo = await dogCollection.insertOne(newDog);
+		if (insertInfo.insertedCount === 0) throw 'Could not add dog';
 
-    const newId = insertInfo.insertedId;
+		const newId = insertInfo.insertedId;
 
-    const dog = await this.getDogById(newId);
-    return dog;
-  },
-  async removeDog(id) {
-    if (!id) throw 'You must provide an id to search for';
+		const dog = await this.getDogById(newId);
+		return dog;
+	},
+	async removeDog(id) {
+		if (!id) throw 'You must provide an id to search for';
 
-    const dogCollection = await dogs();
-    const deletionInfo = await dogCollection.removeOne({_id: id});
+		const dogCollection = await dogs();
+		const deletionInfo = await dogCollection.deleteOne({ _id: id });
 
-    if (deletionInfo.deletedCount === 0) {
-      throw `Could not delete dog with id of ${id}`;
-    }
-  },
-  async updateDog(id, name, breeds) {
-    if (!id) throw 'You must provide an id to search for';
+		if (deletionInfo.deletedCount === 0) {
+			throw `Could not delete dog with id of ${id}`;
+		}
+		return { deleted: true };
+	},
+	async updateDog(id, name, breeds) {
+		if (!id) throw 'You must provide an id to search for';
 
-    if (!name) throw 'You must provide a name for your dog';
+		if (!name) throw 'You must provide a name for your dog';
 
-    if (!breeds || !Array.isArray(breeds)) throw 'You must provide an array of breeds';
+		if (!breeds || !Array.isArray(breeds)) throw 'You must provide an array of breeds';
 
-    if (breeds.length === 0) throw 'You must provide at least one breed.';
+		if (breeds.length === 0) throw 'You must provide at least one breed.';
 
-    const dogCollection = await dogs();
-    const updatedDog = {
-      name: name,
-      breeds: breeds
-    };
+		const dogCollection = await dogs();
+		const updatedDog = {
+			name: name,
+			breeds: breeds
+		};
 
-    const updatedInfo = await dogCollection.updateOne({_id: id}, {$set: updatedDog});
-    if (updatedInfo.modifiedCount === 0) {
-      throw 'could not update dog successfully';
-    }
+		const updatedInfo = await dogCollection.updateOne({ _id: id }, { $set: updatedDog });
+		if (updatedInfo.modifiedCount === 0) {
+			throw 'could not update dog successfully';
+		}
 
-    return await this.getDogById(id);
-  }
+		return await this.getDogById(id);
+	}
 };
