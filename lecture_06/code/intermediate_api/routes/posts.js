@@ -28,6 +28,9 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
 	const blogPostData = req.body;
+	if (!blogPostData.title) throw 'You must supply a blog title';
+	if (!blogPostData.body) throw 'You must supply a blog body';
+	if (!blogPostData.posterId) throw 'You must supply a poster ID';
 	try {
 		const { title, body, tags, posterId } = blogPostData;
 		const newPost = await postData.addPost(title, body, tags, posterId);

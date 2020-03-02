@@ -15,9 +15,6 @@ async function main() {
 	const rating = await advMongo.findByRatings([ 3.2, 5 ]);
 	console.log(rating);
 
-	const updatedTitle = await advMongo.updateTitle(1, 'CS546 - Inception');
-	console.log(updatedTitle);
-
 	console.log('done');
 	process.exit();
 }
