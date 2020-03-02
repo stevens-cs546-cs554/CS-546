@@ -28,9 +28,18 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
 	const blogPostData = req.body;
-	if (!blogPostData.title) throw 'You must supply a blog title';
-	if (!blogPostData.body) throw 'You must supply a blog body';
-	if (!blogPostData.posterId) throw 'You must supply a poster ID';
+	if (!blogPostData.title) {
+		res.status(400).json({ error: 'You must provide blog post title' });
+		return;
+	}
+	if (!blogPostData.body) {
+		res.status(400).json({ error: 'You must provide blog post body' });
+		return;
+	}
+	if (!blogPostData.posterId) {
+		res.status(400).json({ error: 'You must provide poster ID' });
+		return;
+	}
 	try {
 		const { title, body, tags, posterId } = blogPostData;
 		const newPost = await postData.addPost(title, body, tags, posterId);
@@ -42,8 +51,10 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
 	const updatedData = req.body;
-	if (!updatedData.title || !updatedData.body || !updatedData.posterId || !updatedData.tags)
-		throw 'All fields need to be supplied';
+	if (!updatedData.title || !updatedData.body || !updatedData.posterId) {
+		res.status(400).json({ error: 'You must Supply All fields' });
+		return;
+	}
 	try {
 		await postData.getPostById(req.params.id);
 	} catch (e) {
@@ -83,6 +94,10 @@ router.patch('/:id', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
+	if (!req.params.id) {
+		res.status(400).json({ error: 'You must Supply and ID to delete' });
+		return;
+	}
 	try {
 		await postData.getPostById(req.params.id);
 	} catch (e) {
