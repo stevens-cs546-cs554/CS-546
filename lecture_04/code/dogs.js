@@ -32,8 +32,7 @@ module.exports = {
 
 		let newDog = {
 			name: name,
-			breeds: breeds,
-			color: 'brown'
+			breeds: breeds
 		};
 
 		const insertInfo = await dogCollection.insertOne(newDog);
