@@ -39,6 +39,8 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
 	const updatedData = req.body;
+	if (!updatedData.title || !updatedData.body || !updatedData.posterId || !updatedData.tags)
+		throw 'All fields need to be supplied';
 	try {
 		await postData.getPostById(req.params.id);
 	} catch (e) {
@@ -55,16 +57,22 @@ router.put('/:id', async (req, res) => {
 });
 
 router.patch('/:id', async (req, res) => {
-	const updatedData = req.body;
+	const requestBody = req.body;
+	let updatedObject = {};
 	try {
-		await postData.getPostById(req.params.id);
+		const oldPost = await postData.getPostById(req.params.id);
+		if (requestBody.title && requestBody.title !== oldPost.title) updatedObject.title = requestBody.title;
+		if (requestBody.body && requestBody.body !== oldPost.body) updatedObject.body = requestBody.body;
+		if (requestBody.tags && requestBody.tags !== oldPost.tags) updatedObject.tags = requestBody.tags;
+		if (requestBody.posterId && requestBody.posterId !== oldPost.posterId)
+			updatedObject.posterId = requestBody.posterId;
 	} catch (e) {
 		res.status(404).json({ error: 'Post not found' });
 		return;
 	}
 
 	try {
-		const updatedPost = await postData.updatePost(req.params.id, updatedData);
+		const updatedPost = await postData.updatePost(req.params.id, updatedObject);
 		res.json(updatedPost);
 	} catch (e) {
 		res.status(500).json({ error: e });

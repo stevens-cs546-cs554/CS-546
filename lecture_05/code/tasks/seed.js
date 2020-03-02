@@ -16,7 +16,6 @@ const main = async () => {
 	);
 	const third = await posts.addPost('Using routes', 'The purpose of today is to simply look at some GET routes', id);
 	console.log('Done seeding database');
-	await users.updateUser(patrick._id, 'John', 'Doe');
 	await db.serverConfig.close();
 };
 
