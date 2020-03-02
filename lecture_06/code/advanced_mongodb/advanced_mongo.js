@@ -3,7 +3,7 @@ const movies = mongoCollections.advancedMovies;
 module.exports = {
 	getAllMovies: async () => {
 		const movieCollection = await movies();
-		const movieList = await movieCollection.find({}).sort({ title: 1 }).toArray();
+		const movieList = await movieCollection.find({}).toArray();
 		return movieList;
 	},
 
@@ -39,6 +39,7 @@ module.exports = {
 			.toArray();
 		return movieList;
 	},
+	//Sorting
 	getAllMoviesSortedByTitleAsc: async () => {
 		const movieCollection = await movies();
 		const movieList = await movieCollection.find({}).sort({ title: 1 }).toArray();
@@ -59,9 +60,37 @@ module.exports = {
 		const movieList = await movieCollection.find({}).sort({ 'info.release': -1 }).toArray();
 		return movieList;
 	},
-	getAllMoviesSortedByTitleYearAsc: async () => {
+	getAllMoviesSortedByTitleAscYearDec: async () => {
 		const movieCollection = await movies();
 		const movieList = await movieCollection.find({}).sort({ title: 1, 'info.release': -1 }).toArray();
+		return movieList;
+	},
+
+	//skip and limit
+	//skip
+	getAllMoviesSkipFirstTwo: async () => {
+		const movieCollection = await movies();
+		const movieList = await movieCollection.find({}).skip(2).toArray();
+		return movieList;
+	},
+	//limit
+	getAllMoviesLimitOfTwo: async () => {
+		const movieCollection = await movies();
+		const movieList = await movieCollection.find({}).limit(2).toArray();
+		return movieList;
+	},
+
+	//limit and skip
+	getAllMoviesSkipFirstLimitThree: async () => {
+		const movieCollection = await movies();
+		const movieList = await movieCollection.find({}).skip(2).limit(3).toArray();
+		return movieList;
+	},
+
+	//limit skip and sort
+	getAllMoviesSkipFirstLimitThreeSortByTitleDec: async () => {
+		const movieCollection = await movies();
+		const movieList = await movieCollection.find({}).skip(2).limit(3).sort({ title: -1 }).toArray();
 		return movieList;
 	},
 
@@ -78,8 +107,14 @@ module.exports = {
 	findByRatings: async (potentialRatings) => {
 		if (!potentialRatings) throw 'You must provide an array of potentially matching ratings';
 		const movieCollection = await movies();
-		// ie, passing [3.2, 5] would find movies that have a rating field with 3.2 or 5
+		// ie, passing [3.2, 5] would find movies that have a rating field with 3.2 or 5 [3.2,5]
 		return await movieCollection.find({ rating: { $in: potentialRatings } }).toArray();
+	},
+	findByRatingsNot: async (potentialRatings) => {
+		if (!potentialRatings) throw 'You must provide an array of potentially matching ratings';
+		const movieCollection = await movies();
+		// ie, passing [3.2, 5] would find movies that have a rating field with 3.2 or 5 [3.2,5]
+		return await movieCollection.find({ rating: { $nin: potentialRatings } }).toArray();
 	},
 
 	findMoviesReleasedBefore: async (startingYear) => {
