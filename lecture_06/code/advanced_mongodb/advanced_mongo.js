@@ -62,7 +62,7 @@ module.exports = {
 	},
 	getAllMoviesSortedByTitleAscYearDec: async () => {
 		const movieCollection = await movies();
-		const movieList = await movieCollection.find({}).sort({ title: 1, 'info.release': -1 }).toArray();
+		const movieList = await movieCollection.find({}).sort({ title: 1, 'info.release': 1 }).toArray();
 		return movieList;
 	},
 

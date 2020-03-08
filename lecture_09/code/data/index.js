@@ -1,4 +1,5 @@
+const calculator = require("./calculator");
+
 module.exports = {
-  users: require("./users"),
-  posts: require("./posts")
+  calculator: calculator
 };

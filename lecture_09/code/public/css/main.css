@@ -1,15 +1,7 @@
-* {
-  box-sizing: border-box;
-}
-
-html,
 body {
-  font-size: 14pt;
-}
-
-body {
-  background: #dedede;
+  background: #fefefe;
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 15pt;
 }
 
 main {
@@ -27,7 +19,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #222;
+  color: #333;
   margin-bottom: 5px;
 }
 
@@ -36,7 +28,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 
 h3 {
@@ -63,41 +55,4 @@ p {
 .post {
   width: 75%;
   border-bottom: 1px dashed #333;
-}
-
-.new-post-form {
-  max-width: 300px;
-}
-
-.new-post-form .full-width-input {
-  display: block;
-  min-height: 3em;
-  margin: 10px 0;
-  width: 100%;
-}
-
-label {
-  font-weight: bold;
-}
-
-.error-list li {
-  color: #ff0000;
-}
-
-.author-link,
-.author-link:link {
-  color: #228b22;
-}
-
-.author-link:visited {
-  font-style: italic;
-}
-
-.author-link:hover {
-  font-style: normal;
-  font-weight: 700;
-}
-
-.author-link:active {
-  color: #ff0000;
 }
