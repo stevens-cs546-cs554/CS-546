@@ -6,7 +6,7 @@ const constructorMethod = (app) => {
 	app.use('/posts', postRoutes);
 	app.use('/users', userRoutes);
 	app.get('/about', (req, res) => {
-		res.sendFile(path.resolve('stuff/about.html'));
+		res.sendFile(path.resolve('static/about.html'));
 	});
 
 	app.use('*', (req, res) => {
