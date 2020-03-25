@@ -21,6 +21,14 @@ async function main() {
 	);
 	await posts.addPost('Using routes', 'The purpose of today is to simply look at some GET routes', [], id);
 
+	const aiden = await users.addUser('Aiden', 'Hill');
+	await posts.addPost("Aiden's First Post", "I'm 6 months old, I can't blog1", [], aiden._id);
+	await posts.addPost(
+		"Aiden's Second Post",
+		"I'm still 6 months old, I told you already, I can't blog1",
+		[],
+		aiden._id
+	);
 	console.log('Done seeding database');
 	await db.serverConfig.close();
 }
