@@ -32,7 +32,9 @@ let myConcatString2 = `I am letstring: ${letString} I am varString, after a few 
  ${varString}`;
 console.log(myConcatString2);
 
-console.log(letString.concat(' ' + varString + ' some text added after varString'));
+console.log(
+  letString.concat(' ' + varString + ' some text added after varString')
+);
 
 let myString1 = 'Hello there, How are you? My name is Patrick Hill';
 

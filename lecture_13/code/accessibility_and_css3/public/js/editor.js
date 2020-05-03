@@ -1,8 +1,8 @@
-(function($) {
-  var editor = $(".editor"),
+(function ($) {
+  var editor = $('.editor'),
     editorEle = editor[0];
 
-  editor.keydown(function(event) {
+  editor.keydown(function (event) {
     if (event.ctrlKey) {
       // We've hit the control key, let's see if we're also pressing on b, u, or i
       var element = $(
@@ -10,12 +10,12 @@
       );
       if (event.which === 66) {
         // this means the user hit ctrl+b
-        element.toggleClass("strong");
+        element.toggleClass('strong');
       } else if (event.which === 85) {
         // user hit ctrl + u
-        element.toggleClass("underlined");
+        element.toggleClass('underlined');
       } else if (event.which === 73) {
-        element.toggleClass("emphasized");
+        element.toggleClass('emphasized');
         // user hit ctrl + i
       }
 

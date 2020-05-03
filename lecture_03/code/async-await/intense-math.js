@@ -1,4 +1,4 @@
-const Process = require("process");
+const Process = require('process');
 
 function intenseCounting() {
   const target = 1000000;
@@ -41,6 +41,6 @@ function intenseCountingAsync() {
 
 console.log(intenseCounting());
 
-intenseCountingAsync().then(result => {
+intenseCountingAsync().then((result) => {
   console.log(result);
 });

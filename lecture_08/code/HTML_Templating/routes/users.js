@@ -8,7 +8,7 @@ router.get('/:id', async (req, res) => {
     let user = await userData.getUserById(req.params.id);
     res.json(user);
   } catch (e) {
-    res.status(404).json({error: 'User not found'});
+    res.status(404).json({ error: 'User not found' });
   }
 });
 
@@ -25,22 +25,25 @@ router.post('/', async (req, res) => {
   let userInfo = req.body;
 
   if (!userInfo) {
-    res.status(400).json({error: 'You must provide data to create a user'});
+    res.status(400).json({ error: 'You must provide data to create a user' });
     return;
   }
 
   if (!userInfo.firstName) {
-    res.status(400).json({error: 'You must provide a first name'});
+    res.status(400).json({ error: 'You must provide a first name' });
     return;
   }
 
   if (!userInfo.lastName) {
-    res.status(400).json({error: 'You must provide a last name'});
+    res.status(400).json({ error: 'You must provide a last name' });
     return;
   }
 
   try {
-    const newUser = await userData.addUser(userInfo.firstName, userInfo.lastName);
+    const newUser = await userData.addUser(
+      userInfo.firstName,
+      userInfo.lastName
+    );
     res.json(newUser);
   } catch (e) {
     res.sendStatus(500);
@@ -51,24 +54,24 @@ router.put('/:id', async (req, res) => {
   let userInfo = req.body;
 
   if (!userInfo) {
-    res.status(400).json({error: 'You must provide data to update a user'});
+    res.status(400).json({ error: 'You must provide data to update a user' });
     return;
   }
 
   if (!userInfo.firstName) {
-    res.status(400).json({error: 'You must provide a first name'});
+    res.status(400).json({ error: 'You must provide a first name' });
     return;
   }
 
   if (!userInfo.lastName) {
-    res.status(400).json({error: 'You must provide a last name'});
+    res.status(400).json({ error: 'You must provide a last name' });
     return;
   }
 
   try {
     await userData.getUserById(req.params.id);
   } catch (e) {
-    res.status(404).json({error: 'User not found'});
+    res.status(404).json({ error: 'User not found' });
     return;
   }
   try {
@@ -83,7 +86,7 @@ router.delete('/:id', async (req, res) => {
   try {
     await userData.getUserById(req.params.id);
   } catch (e) {
-    res.status(404).json({error: 'User not found'});
+    res.status(404).json({ error: 'User not found' });
     return;
   }
 

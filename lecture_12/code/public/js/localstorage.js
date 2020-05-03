@@ -1,24 +1,24 @@
 // Remember, we're in a browser: prevent global variables from happening
 // I am passing the jQuery variable into the IIFE so that
 // I don't have to rely on global variable name changes in the future
-(function($, localStorage) {
-  if (!localStorage["my_first_object"]) {
-    localStorage["my_first_object"] = JSON.stringify({
-      message: "Hello, world!"
+(function ($, localStorage) {
+  if (!localStorage['my_first_object']) {
+    localStorage['my_first_object'] = JSON.stringify({
+      message: 'Hello, world!',
     });
   }
 
-  if (!localStorage["my_first_boolean"]) {
-    localStorage["my_first_boolean"] = JSON.stringify(true);
+  if (!localStorage['my_first_boolean']) {
+    localStorage['my_first_boolean'] = JSON.stringify(true);
   }
 
-  var localStorageTableBody = $("#localstorage-data tbody");
-  var clearStorage = $("#clear-storage");
+  var localStorageTableBody = $('#localstorage-data tbody');
+  var clearStorage = $('#clear-storage');
 
-  var keyNameInput = $("#localstorage-key");
-  var keyValueInput = $("#localstorage-value");
-  var kvpForm = $("#localstorage-form");
-  var formAlert = $("#form-alert");
+  var keyNameInput = $('#localstorage-key');
+  var keyValueInput = $('#localstorage-value');
+  var kvpForm = $('#localstorage-form');
+  var formAlert = $('#form-alert');
 
   function resetTable() {
     localStorageTableBody.empty();
@@ -32,41 +32,41 @@
       var typeAfterParsing = typeof asJSON;
 
       var newHtmlString =
-        "<tr><td>" +
+        '<tr><td>' +
         currentKey +
-        "</td><td>" +
+        '</td><td>' +
         curentValue +
-        "</td><td>" +
+        '</td><td>' +
         typeAfterParsing +
-        "</td></tr>";
+        '</td></tr>';
       localStorageTableBody.append(newHtmlString);
     }
   }
 
-  clearStorage.click(function() {
+  clearStorage.click(function () {
     localStorage.clear();
     resetTable();
   });
 
-  kvpForm.submit(function(event) {
+  kvpForm.submit(function (event) {
     event.preventDefault();
 
     // reset the form
-    formAlert.addClass("hidden");
-    formAlert.text("");
+    formAlert.addClass('hidden');
+    formAlert.text('');
 
     var keyStr = keyNameInput.val();
     var valStr = keyValueInput.val();
 
     if (!keyStr) {
-      formAlert.text("You must provide a key name");
-      formAlert.removeClass("hidden");
+      formAlert.text('You must provide a key name');
+      formAlert.removeClass('hidden');
       return;
     }
 
     if (!keyValueInput) {
-      formAlert.text("You must provide a key name");
-      formAlert.removeClass("hidden");
+      formAlert.text('You must provide a key name');
+      formAlert.removeClass('hidden');
       return;
     }
 
@@ -85,8 +85,8 @@
 
     localStorage[keyStr] = jsonString;
 
-    keyNameInput.val("");
-    keyValueInput.val("");
+    keyNameInput.val('');
+    keyValueInput.val('');
 
     resetTable();
   });

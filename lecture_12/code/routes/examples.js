@@ -1,37 +1,37 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-router.get("/jquery-dom", (req, res) => {
-  res.render("examples/jquery-dom", {
-    partial: "jquery-dom-scripts"
+router.get('/jquery-dom', (req, res) => {
+  res.render('examples/jquery-dom', {
+    partial: 'jquery-dom-scripts',
   });
 });
 
-router.get("/manual-dom", (req, res) => {
+router.get('/manual-dom', (req, res) => {
   // same HTML for manual dom and jquery dom
-  res.render("examples/jquery-dom", {
-    partial: "manual-dom-scripts"
+  res.render('examples/jquery-dom', {
+    partial: 'manual-dom-scripts',
   });
 });
 
-router.get("/window", (req, res) => {
+router.get('/window', (req, res) => {
   // same HTML for manual dom and jquery dom
-  res.render("examples/window", {
-    partial: "window-scripts"
+  res.render('examples/window', {
+    partial: 'window-scripts',
   });
 });
 
-router.get("/location", (req, res) => {
+router.get('/location', (req, res) => {
   // same HTML for manual dom and jquery dom
-  res.render("examples/location", {
-    partial: "location-scripts"
+  res.render('examples/location', {
+    partial: 'location-scripts',
   });
 });
 
-router.get("/localstorage", (req, res) => {
+router.get('/localstorage', (req, res) => {
   // same HTML for manual dom and jquery dom
-  res.render("examples/localstorage", {
-    partial: "localstorage-scripts"
+  res.render('examples/localstorage', {
+    partial: 'localstorage-scripts',
   });
 });
 

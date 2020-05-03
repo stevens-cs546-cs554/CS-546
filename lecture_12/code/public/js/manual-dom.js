@@ -1,16 +1,16 @@
 // Remember, we're in a browser: prevent global variables from happening
-(function() {
+(function () {
   // Let's store a reference to our h1#the-heading
-  var heading = document.getElementById("the-heading");
+  var heading = document.getElementById('the-heading');
 
   // We can VERY safetly and efficiently change the text content by making new nodes and assigning them like so:
   heading.textContent = document.createTextNode(
-    "The DOM Demonstration"
+    'The DOM Demonstration'
   ).textContent;
 
   // We could have set InnerHTML, but that requires parsing and then updating!
 
-  var listOfItems = document.getElementById("my-list");
+  var listOfItems = document.getElementById('my-list');
 
   // We can log these DOM elements to see them in our console
   console.log(listOfItems);
@@ -29,15 +29,15 @@
     console.groupEnd();
   }
 
-  var mainElement = document.getElementsByTagName("main").item(0);
+  var mainElement = document.getElementsByTagName('main').item(0);
 
-  var newForm = document.createElement("form");
+  var newForm = document.createElement('form');
 
-  console.group("Form Creation");
-  var numericalInput = document.createElement("input");
+  console.group('Form Creation');
+  var numericalInput = document.createElement('input');
 
   // As an input element, we have access to some input-specific attributes such as `value` and `type` and `required`
-  numericalInput.type = "number";
+  numericalInput.type = 'number';
   numericalInput.required = true;
 
   // Now that we set the type to number, we can set numerical input specific attribetus like max and min
@@ -53,16 +53,16 @@
   // Now we can add it to the new form
   newForm.appendChild(numericalInput);
 
-  var submitButton = document.createElement("input");
-  submitButton.type = "submit";
-  submitButton.value = "Submit this form!";
+  var submitButton = document.createElement('input');
+  submitButton.type = 'submit';
+  submitButton.value = 'Submit this form!';
 
   newForm.appendChild(submitButton);
 
-  newForm.addEventListener("submit", function(event) {
-    console.log("form is being submitted");
+  newForm.addEventListener('submit', function (event) {
+    console.log('form is being submitted');
     event.preventDefault();
-    alert("You submitted a value of " + numericalInput.value);
+    alert('You submitted a value of ' + numericalInput.value);
   });
 
   mainElement.appendChild(newForm);
@@ -70,5 +70,5 @@
   console.groupEnd();
 
   // Let's set something document related, too
-  document.title = "Manipulating a form in plain DOM API";
+  document.title = 'Manipulating a form in plain DOM API';
 })();

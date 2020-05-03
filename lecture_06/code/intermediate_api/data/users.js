@@ -13,7 +13,7 @@ let exportedMethods = {
   // methods on an object with this shorthand!
   async getUserById(id) {
     const userCollection = await users();
-    const user = await userCollection.findOne({_id: id});
+    const user = await userCollection.findOne({ _id: id });
     if (!user) throw 'User not found';
     return user;
   },
@@ -24,7 +24,7 @@ let exportedMethods = {
       firstName: firstName,
       lastName: lastName,
       _id: uuid(),
-      posts: []
+      posts: [],
     };
 
     const newInsertInformation = await userCollection.insertOne(newUser);
@@ -33,7 +33,7 @@ let exportedMethods = {
   },
   async removeUser(id) {
     const userCollection = await users();
-    const deletionInfo = await userCollection.removeOne({_id: id});
+    const deletionInfo = await userCollection.removeOne({ _id: id });
     if (deletionInfo.deletedCount === 0) {
       throw `Could not delete user with id of ${id}`;
     }
@@ -45,12 +45,16 @@ let exportedMethods = {
 
     let userUpdateInfo = {
       firstName: updatedUser.firstName,
-      lastName: updatedUser.lastName
+      lastName: updatedUser.lastName,
     };
 
     const userCollection = await users();
-    const updateInfo = await userCollection.updateOne({_id: id}, {$set: userUpdateInfo});
-    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Update failed';
+    const updateInfo = await userCollection.updateOne(
+      { _id: id },
+      { $set: userUpdateInfo }
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
+      throw 'Update failed';
 
     return await this.getUserById(id);
   },
@@ -60,11 +64,12 @@ let exportedMethods = {
 
     const userCollection = await users();
     const updateInfo = await userCollection.updateOne(
-      {_id: userId},
-      {$addToSet: {posts: {id: postId, title: postTitle}}}
+      { _id: userId },
+      { $addToSet: { posts: { id: postId, title: postTitle } } }
     );
 
-    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Update failed';
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
+      throw 'Update failed';
 
     return await this.getUserById(userId);
   },
@@ -73,11 +78,15 @@ let exportedMethods = {
     console.log(currentUser);
 
     const userCollection = await users();
-    const updateInfo = await userCollection.updateOne({_id: userId}, {$pull: {posts: {id: postId}}});
-    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Update failed';
+    const updateInfo = await userCollection.updateOne(
+      { _id: userId },
+      { $pull: { posts: { id: postId } } }
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
+      throw 'Update failed';
 
     return await this.getUserById(userId);
-  }
+  },
 };
 
 module.exports = exportedMethods;

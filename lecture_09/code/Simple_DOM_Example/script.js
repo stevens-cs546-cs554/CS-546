@@ -3,21 +3,21 @@ let textInput = document.getElementById('text_input');
 let errorDiv = document.getElementById('error');
 let myUl = document.getElementById('list');
 if (myForm) {
-	myForm.addEventListener('submit', (event) => {
-		event.preventDefault();
-		if (textInput.value) {
-			errorDiv.hidden = true;
-			let li = document.createElement('li');
-			li.innerHTML = textInput.value;
-			myUl.appendChild(li);
-			myForm.reset();
-			textInput.focus();
-		} else {
-			errorDiv.hidden = false;
-			errorDiv.innerHTML = 'You Must Enter a value!';
-			textInput.focus();
-		}
-	});
+  myForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (textInput.value) {
+      errorDiv.hidden = true;
+      let li = document.createElement('li');
+      li.innerHTML = textInput.value;
+      myUl.appendChild(li);
+      myForm.reset();
+      textInput.focus();
+    } else {
+      errorDiv.hidden = false;
+      errorDiv.innerHTML = 'You Must Enter a value!';
+      textInput.focus();
+    }
+  });
 }
 
 // let myP = document.getElementById('myP');
