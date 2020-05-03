@@ -7,7 +7,7 @@ const fs = bluebird.promisifyAll(require('fs'));
 async function main() {
   const getFileOperation = {
     name: 'fileName',
-    description: 'What file do you want to open?',
+    description: 'What file do you want to open?'
   };
 
   // Gets result of user input

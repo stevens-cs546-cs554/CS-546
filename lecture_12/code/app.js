@@ -15,9 +15,9 @@ const handlebarsInstance = exphbs.create({
         return new Handlebars.SafeString(JSON.stringify(obj, null, spacing));
 
       return new Handlebars.SafeString(JSON.stringify(obj));
-    },
+    }
   },
-  partialsDir: ['views/partials/'],
+  partialsDir: ['views/partials/']
 });
 
 app.use('/public', express.static(__dirname + '/public'));

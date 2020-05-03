@@ -24,9 +24,9 @@ let exportedMethods = {
       body: body,
       poster: {
         id: posterId,
-        name: `${userThatPosted.firstName} ${userThatPosted.lastName}`,
+        name: `${userThatPosted.firstName} ${userThatPosted.lastName}`
       },
-      _id: uuid.v4(),
+      _id: uuid.v4()
     };
 
     const newInsertInformation = await postCollection.insertOne(newPost);
@@ -50,8 +50,8 @@ let exportedMethods = {
       body: body,
       poster: {
         id: posterId,
-        name: userThatPosted.name,
-      },
+        name: userThatPosted.name
+      }
     };
     const updateInfo = await postCollection.updateOne(
       { _id: id },
@@ -60,7 +60,7 @@ let exportedMethods = {
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
       throw 'Update failed';
     return this.getPostById(id);
-  },
+  }
 };
 
 module.exports = exportedMethods;

@@ -37,5 +37,5 @@ module.exports = {
     checkIsProperNumber(num2, 'second number');
 
     return num1 - num2;
-  },
+  }
 };

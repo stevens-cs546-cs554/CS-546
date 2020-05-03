@@ -4,7 +4,7 @@
 (function ($, localStorage) {
   if (!localStorage['my_first_object']) {
     localStorage['my_first_object'] = JSON.stringify({
-      message: 'Hello, world!',
+      message: 'Hello, world!'
     });
   }
 

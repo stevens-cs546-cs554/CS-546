@@ -24,8 +24,8 @@ async function runSetup() {
       cast: [],
       info: {
         release: released,
-        director: director,
-      },
+        director: director
+      }
     };
   };
 
@@ -35,7 +35,7 @@ async function runSetup() {
       title: title,
       comment: comment,
       reviewer: reviewer,
-      rating: rating,
+      rating: rating
     };
 
     movie.reviews.push(newReview);

@@ -47,5 +47,5 @@ module.exports = {
   divideTwoNumbers,
   addTwoNumbers,
   subtractTwoNumbers,
-  multiplyTwoNumbers,
+  multiplyTwoNumbers
 };

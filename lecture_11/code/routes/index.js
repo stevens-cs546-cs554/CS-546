@@ -7,7 +7,7 @@ const constructorMethod = (app) => {
   app.get('/', function (request, response) {
     response.render('home', {
       pageTitle: 'So Much ToDo!',
-      todoItems: todoData.getAll(),
+      todoItems: todoData.getAll()
     });
   });
 

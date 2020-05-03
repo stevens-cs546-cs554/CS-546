@@ -3,5 +3,5 @@ const userData = require('./users');
 
 module.exports = {
   users: userData,
-  posts: postData,
+  posts: postData
 };

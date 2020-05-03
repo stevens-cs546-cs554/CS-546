@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
       errors: errors,
       hasErrors: true,
       post: blogPostData,
-      users: users,
+      users: users
     });
     return;
   }

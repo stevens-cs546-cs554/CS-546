@@ -8,7 +8,7 @@ let mixedArray = [
   true,
   (message) => {
     console.log(message);
-  },
+  }
 ];
 
 mixedArray[4]('Hello world!');

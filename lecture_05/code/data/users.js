@@ -22,7 +22,7 @@ let exportedMethods = {
     let newUser = {
       firstName: firstName,
       lastName: lastName,
-      _id: uuid.v4(),
+      _id: uuid.v4()
     };
 
     const newInsertInformation = await userCollection.insertOne(newUser);
@@ -43,7 +43,7 @@ let exportedMethods = {
 
     const userUpdateInfo = {
       firstName: firstName,
-      lastName: lastName,
+      lastName: lastName
     };
 
     const userCollection = await users();
@@ -55,7 +55,7 @@ let exportedMethods = {
       throw 'Update failed';
 
     return await this.getUserById(id);
-  },
+  }
 };
 
 module.exports = exportedMethods;

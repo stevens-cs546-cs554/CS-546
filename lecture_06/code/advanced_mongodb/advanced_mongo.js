@@ -197,8 +197,8 @@ module.exports = {
       .find({
         $and: [
           { 'info.release': releaseYear },
-          { 'info.director': directorName },
-        ],
+          { 'info.director': directorName }
+        ]
       })
       .toArray();
   },
@@ -215,8 +215,8 @@ module.exports = {
       .find({
         $or: [
           { 'info.release': releaseYear },
-          { 'info.director': directorName },
-        ],
+          { 'info.director': directorName }
+        ]
       })
       .toArray();
   },
@@ -228,7 +228,7 @@ module.exports = {
     const movieCollection = await movies();
     return await movieCollection
       .find({
-        $where: "this.title.toLowerCase().indexOf('" + keyword + "') >= 0",
+        $where: "this.title.toLowerCase().indexOf('" + keyword + "') >= 0"
       })
       .toArray();
   },
@@ -417,5 +417,5 @@ module.exports = {
       .then(function () {
         return module.exports.getMovie(id);
       });
-  },
+  }
 };

@@ -10,7 +10,7 @@ let makeToDo = function (title, task) {
     title: title,
     task: task,
     done: false,
-    notDone: true,
+    notDone: true
   };
 
   todoListEntries[newTask.id] = newTask;
@@ -63,7 +63,7 @@ module.exports = {
   getAll: getAll,
   getFinished: getFinished,
   getUnfinished: getUnfinished,
-  makeToDo: makeToDo,
+  makeToDo: makeToDo
 };
 
 module.exports.makeToDo(

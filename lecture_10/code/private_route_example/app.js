@@ -10,7 +10,7 @@ app.use(
     name: 'AwesomeWebApp',
     secret: "This is a secret.. shhh don't tell anyone",
     saveUninitialized: true,
-    resave: false,
+    resave: false
   })
 );
 

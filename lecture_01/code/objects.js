@@ -6,7 +6,7 @@ let myObj = {
   bool: true,
   myFn: (message) => {
     return message;
-  },
+  }
 };
 
 console.log(myObj);

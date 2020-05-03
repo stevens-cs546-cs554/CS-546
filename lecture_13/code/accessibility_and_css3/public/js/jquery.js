@@ -162,7 +162,7 @@
     // Behaves like an Array's method, not like a jQuery method.
     push: push,
     sort: arr.sort,
-    splice: arr.splice,
+    splice: arr.splice
   };
 
   jQuery.extend = jQuery.fn.extend = function () {
@@ -524,7 +524,7 @@
 
     // jQuery.support is not used in Core but other projects attach their
     // properties to it so it needs to exist.
-    support: support,
+    support: support
   });
 
   // Populate the class2type map
@@ -713,7 +713,7 @@
               whitespace +
               '*\\)|)(?=[^-]|$)',
             'i'
-          ),
+          )
         },
         rinputs = /^(?:input|select|textarea|button)$/i,
         rheader = /^h\d$/i,
@@ -775,7 +775,7 @@
                 // Can't trust NodeList.length
                 while ((target[j++] = els[i++])) {}
                 target.length = j - 1;
-              },
+              }
         };
       }
 
@@ -1648,7 +1648,7 @@
           '>': { dir: 'parentNode', first: true },
           ' ': { dir: 'parentNode' },
           '+': { dir: 'previousSibling', first: true },
-          '~': { dir: 'previousSibling' },
+          '~': { dir: 'previousSibling' }
         },
 
         preFilter: {
@@ -1732,7 +1732,7 @@
 
             // Return only captures needed by the pseudo filter method (type and argument)
             return match.slice(0, 3);
-          },
+          }
         },
 
         filter: {
@@ -1900,7 +1900,7 @@
                           if (useCache) {
                             (node[expando] || (node[expando] = {}))[type] = [
                               dirruns,
-                              diff,
+                              diff
                             ];
                           }
 
@@ -1958,7 +1958,7 @@
             }
 
             return fn;
-          },
+          }
         },
 
         pseudos: {
@@ -2178,8 +2178,8 @@
               matchIndexes.push(i);
             }
             return matchIndexes;
-          }),
-        },
+          })
+        }
       };
 
       Expr.pseudos['nth'] = Expr.pseudos['eq'];
@@ -2190,7 +2190,7 @@
         checkbox: true,
         file: true,
         password: true,
-        image: true,
+        image: true
       }) {
         Expr.pseudos[i] = createInputPseudo(i);
       }
@@ -2239,7 +2239,7 @@
             tokens.push({
               value: matched,
               // Cast descendant combinators to space
-              type: match[0].replace(rtrim, ' '),
+              type: match[0].replace(rtrim, ' ')
             });
             soFar = soFar.slice(matched.length);
           }
@@ -2254,7 +2254,7 @@
               tokens.push({
                 value: matched,
                 type: type,
-                matches: match,
+                matches: match
               });
               soFar = soFar.slice(matched.length);
             }
@@ -2523,7 +2523,7 @@
               // Avoid hanging onto element (issue #299)
               checkContext = null;
               return ret;
-            },
+            }
           ];
 
         for (; i < len; i++) {
@@ -2982,7 +2982,7 @@
           : selector || [],
         false
       ).length;
-    },
+    }
   });
 
   // Initialize a jQuery object
@@ -3111,7 +3111,7 @@
       children: true,
       contents: true,
       next: true,
-      prev: true,
+      prev: true
     };
 
   jQuery.extend({
@@ -3140,7 +3140,7 @@
       }
 
       return matched;
-    },
+    }
   });
 
   jQuery.fn.extend({
@@ -3223,7 +3223,7 @@
       return this.add(
         selector == null ? this.prevObject : this.prevObject.filter(selector)
       );
-    },
+    }
   });
 
   function sibling(cur, dir) {
@@ -3269,7 +3269,7 @@
       },
       contents: function (elem) {
         return elem.contentDocument || jQuery.merge([], elem.childNodes);
-      },
+      }
     },
     function (name, fn) {
       jQuery.fn[name] = function (until, selector) {
@@ -3496,7 +3496,7 @@
         // To know if the callbacks have already been called at least once
         fired: function () {
           return !!fired;
-        },
+        }
       };
 
     return self;
@@ -3508,7 +3508,7 @@
           // action, add listener, listener list, final state
           ['resolve', 'done', jQuery.Callbacks('once memory'), 'resolved'],
           ['reject', 'fail', jQuery.Callbacks('once memory'), 'rejected'],
-          ['notify', 'progress', jQuery.Callbacks('memory')],
+          ['notify', 'progress', jQuery.Callbacks('memory')]
         ],
         state = 'pending',
         promise = {
@@ -3550,7 +3550,7 @@
           // If obj is provided, the promise aspect is added to the object
           promise: function (obj) {
             return obj != null ? jQuery.extend(obj, promise) : promise;
-          },
+          }
         },
         deferred = {};
 
@@ -3655,7 +3655,7 @@
       }
 
       return deferred.promise();
-    },
+    }
   });
 
   // The deferred used on DOM ready
@@ -3708,7 +3708,7 @@
         jQuery(document).triggerHandler('ready');
         jQuery(document).off('ready');
       }
-    },
+    }
   });
 
   /**
@@ -3831,7 +3831,7 @@
     Object.defineProperty((this.cache = {}), 0, {
       get: function () {
         return {};
-      },
+      }
     });
 
     this.expando = jQuery.expando + Data.uid++;
@@ -3993,7 +3993,7 @@
       if (owner[this.expando]) {
         delete this.cache[owner[this.expando]];
       }
-    },
+    }
   };
   var data_priv = new Data();
 
@@ -4068,7 +4068,7 @@
 
     _removeData: function (elem, name) {
       data_priv.remove(elem, name);
-    },
+    }
   });
 
   jQuery.fn.extend({
@@ -4179,7 +4179,7 @@
       return this.each(function () {
         data_user.remove(this, key);
       });
-    },
+    }
   });
 
   jQuery.extend({
@@ -4244,10 +4244,10 @@
         data_priv.access(elem, key, {
           empty: jQuery.Callbacks('once memory').add(function () {
             data_priv.remove(elem, [type + 'queue', key]);
-          }),
+          })
         })
       );
-    },
+    }
   });
 
   jQuery.fn.extend({
@@ -4314,7 +4314,7 @@
       }
       resolve();
       return defer.promise(obj);
-    },
+    }
   });
   var pnum = /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source;
 
@@ -4465,7 +4465,7 @@
             selector: selector,
             needsContext:
               selector && jQuery.expr.match.needsContext.test(selector),
-            namespace: namespaces.join('.'),
+            namespace: namespaces.join('.')
           },
           handleObjIn
         );
@@ -4854,7 +4854,7 @@
       if (delegateCount < handlers.length) {
         handlerQueue.push({
           elem: this,
-          handlers: handlers.slice(delegateCount),
+          handlers: handlers.slice(delegateCount)
         });
       }
 
@@ -4878,7 +4878,7 @@
         }
 
         return event;
-      },
+      }
     },
 
     mouseHooks: {
@@ -4914,7 +4914,7 @@
         }
 
         return event;
-      },
+      }
     },
 
     fix: function (event) {
@@ -4965,7 +4965,7 @@
     special: {
       load: {
         // Prevent triggered image.load events from bubbling to window.load
-        noBubble: true,
+        noBubble: true
       },
       focus: {
         // Fire native event if possible so blur/focus sequence is correct
@@ -4975,7 +4975,7 @@
             return false;
           }
         },
-        delegateType: 'focusin',
+        delegateType: 'focusin'
       },
       blur: {
         trigger: function () {
@@ -4984,7 +4984,7 @@
             return false;
           }
         },
-        delegateType: 'focusout',
+        delegateType: 'focusout'
       },
       click: {
         // For checkbox, fire native event so checked state will be right
@@ -5002,7 +5002,7 @@
         // For cross-browser consistency, don't fire native .click() on links
         _default: function (event) {
           return jQuery.nodeName(event.target, 'a');
-        },
+        }
       },
 
       beforeunload: {
@@ -5012,8 +5012,8 @@
           if (event.result !== undefined && event.originalEvent) {
             event.originalEvent.returnValue = event.result;
           }
-        },
-      },
+        }
+      }
     },
 
     simulate: function (type, elem, event, bubble) {
@@ -5023,7 +5023,7 @@
       var e = jQuery.extend(new jQuery.Event(), event, {
         type: type,
         isSimulated: true,
-        originalEvent: {},
+        originalEvent: {}
       });
       if (bubble) {
         jQuery.event.trigger(e, null, elem);
@@ -5033,7 +5033,7 @@
       if (e.isDefaultPrevented()) {
         event.preventDefault();
       }
-    },
+    }
   };
 
   jQuery.removeEvent = function (elem, type, handle) {
@@ -5115,7 +5115,7 @@
       }
 
       this.stopPropagation();
-    },
+    }
   };
 
   // Create mouseenter/leave events using mouseover/out and event-time checks
@@ -5125,7 +5125,7 @@
       mouseenter: 'mouseover',
       mouseleave: 'mouseout',
       pointerenter: 'pointerover',
-      pointerleave: 'pointerout',
+      pointerleave: 'pointerout'
     },
     function (orig, fix) {
       jQuery.event.special[orig] = {
@@ -5149,7 +5149,7 @@
             event.type = fix;
           }
           return ret;
-        },
+        }
       };
     }
   );
@@ -5183,7 +5183,7 @@
           } else {
             data_priv.access(doc, fix, attaches);
           }
-        },
+        }
       };
     });
   }
@@ -5289,7 +5289,7 @@
       if (elem) {
         return jQuery.event.trigger(type, data, elem, true);
       }
-    },
+    }
   });
 
   var rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi,
@@ -5311,7 +5311,7 @@
       tr: [2, '<table><tbody>', '</tbody></table>'],
       td: [3, '<table><tbody><tr>', '</tr></tbody></table>'],
 
-      _default: [0, '', ''],
+      _default: [0, '', '']
     };
 
   // Support: IE9
@@ -5596,7 +5596,7 @@
         // Discard any remaining `user` data
         delete data_user.cache[elem[data_user.expando]];
       }
-    },
+    }
   });
 
   jQuery.fn.extend({
@@ -5880,7 +5880,7 @@
       }
 
       return this;
-    },
+    }
   });
 
   jQuery.each(
@@ -5889,7 +5889,7 @@
       prependTo: 'prepend',
       insertBefore: 'before',
       insertAfter: 'after',
-      replaceAll: 'replaceWith',
+      replaceAll: 'replaceWith'
     },
     function (name, original) {
       jQuery.fn[name] = function (selector) {
@@ -6052,7 +6052,7 @@
 
         // Hook needed; redefine it so that the support test is not executed again.
         return (this.get = hookFn).apply(this, arguments);
-      },
+      }
     };
   }
 
@@ -6141,7 +6141,7 @@
           div.removeChild(marginDiv);
 
           return ret;
-        },
+        }
       });
     }
   })();
@@ -6176,7 +6176,7 @@
     cssShow = { position: 'absolute', visibility: 'hidden', display: 'block' },
     cssNormalTransform = {
       letterSpacing: '0',
-      fontWeight: '400',
+      fontWeight: '400'
     },
     cssPrefixes = ['Webkit', 'O', 'Moz', 'ms'];
 
@@ -6380,8 +6380,8 @@
             var ret = curCSS(elem, 'opacity');
             return ret === '' ? '1' : ret;
           }
-        },
-      },
+        }
+      }
     },
 
     // Don't automatically add "px" to these possibly-unitless properties
@@ -6397,13 +6397,13 @@
       orphans: true,
       widows: true,
       zIndex: true,
-      zoom: true,
+      zoom: true
     },
 
     // Add in properties whose names you wish to fix before
     // setting or getting the value
     cssProps: {
-      float: 'cssFloat',
+      float: 'cssFloat'
     },
 
     // Get and set the style property on a DOM Node
@@ -6516,7 +6516,7 @@
         return extra === true || jQuery.isNumeric(num) ? num || 0 : val;
       }
       return val;
-    },
+    }
   });
 
   jQuery.each(['height', 'width'], function (i, name) {
@@ -6549,7 +6549,7 @@
               )
             : 0
         );
-      },
+      }
     };
   });
 
@@ -6560,7 +6560,7 @@
       if (computed) {
         return jQuery.swap(elem, { display: 'inline-block' }, curCSS, [
           elem,
-          'marginRight',
+          'marginRight'
         ]);
       }
     }
@@ -6571,7 +6571,7 @@
     {
       margin: '',
       padding: '',
-      border: 'Width',
+      border: 'Width'
     },
     function (prefix, suffix) {
       jQuery.cssHooks[prefix + suffix] = {
@@ -6587,7 +6587,7 @@
           }
 
           return expanded;
-        },
+        }
       };
 
       if (!rmargin.test(prefix)) {
@@ -6644,7 +6644,7 @@
           jQuery(this).hide();
         }
       });
-    },
+    }
   });
 
   function Tween(elem, options, prop, end, easing) {
@@ -6697,7 +6697,7 @@
         Tween.propHooks._default.set(this);
       }
       return this;
-    },
+    }
   };
 
   Tween.prototype.init.prototype = Tween.prototype;
@@ -6737,8 +6737,8 @@
         } else {
           tween.elem[tween.prop] = tween.now;
         }
-      },
-    },
+      }
+    }
   };
 
   // Support: IE9
@@ -6748,7 +6748,7 @@
       if (tween.elem.nodeType && tween.elem.parentNode) {
         tween.elem[tween.prop] = tween.now;
       }
-    },
+    }
   };
 
   jQuery.easing = {
@@ -6757,7 +6757,7 @@
     },
     swing: function (p) {
       return 0.5 - Math.cos(p * Math.PI) / 2;
-    },
+    }
   };
 
   jQuery.fx = Tween.prototype.init;
@@ -6824,8 +6824,8 @@
           }
 
           return tween;
-        },
-      ],
+        }
+      ]
     };
 
   // Animations created synchronously will run synchronously
@@ -7129,7 +7129,7 @@
             deferred.rejectWith(elem, [animation, gotoEnd]);
           }
           return this;
-        },
+        }
       }),
       props = animation.props;
 
@@ -7157,7 +7157,7 @@
       jQuery.extend(tick, {
         elem: elem,
         anim: animation,
-        queue: animation.opts.queue,
+        queue: animation.opts.queue
       })
     );
 
@@ -7195,7 +7195,7 @@
       } else {
         animationPrefilters.push(callback);
       }
-    },
+    }
   });
 
   jQuery.speed = function (speed, easing, fn) {
@@ -7207,8 +7207,7 @@
               fn || (!fn && easing) || (jQuery.isFunction(speed) && speed),
             duration: speed,
             easing:
-              (fn && easing) ||
-              (easing && !jQuery.isFunction(easing) && easing),
+              (fn && easing) || (easing && !jQuery.isFunction(easing) && easing)
           };
 
     opt.duration = jQuery.fx.off
@@ -7364,7 +7363,7 @@
         // Turn off finishing flag
         delete data.finish;
       });
-    },
+    }
   });
 
   jQuery.each(['toggle', 'show', 'hide'], function (i, name) {
@@ -7384,7 +7383,7 @@
       slideToggle: genFx('toggle'),
       fadeIn: { opacity: 'show' },
       fadeOut: { opacity: 'hide' },
-      fadeToggle: { opacity: 'toggle' },
+      fadeToggle: { opacity: 'toggle' }
     },
     function (name, props) {
       jQuery.fn[name] = function (speed, easing, callback) {
@@ -7441,7 +7440,7 @@
     slow: 600,
     fast: 200,
     // Default speed
-    _default: 400,
+    _default: 400
   };
 
   // Based off of the plugin by Clint Helfers, with permission.
@@ -7499,7 +7498,7 @@
       return this.each(function () {
         jQuery.removeAttr(this, name);
       });
-    },
+    }
   });
 
   jQuery.extend({
@@ -7590,9 +7589,9 @@
             }
             return value;
           }
-        },
-      },
-    },
+        }
+      }
+    }
   });
 
   // Hooks for boolean attributes
@@ -7605,7 +7604,7 @@
         elem.setAttribute(name, name);
       }
       return name;
-    },
+    }
   };
   jQuery.each(jQuery.expr.match.bool.source.match(/\w+/g), function (i, name) {
     var getter = attrHandle[name] || jQuery.find.attr;
@@ -7634,13 +7633,13 @@
       return this.each(function () {
         delete this[jQuery.propFix[name] || name];
       });
-    },
+    }
   });
 
   jQuery.extend({
     propFix: {
       for: 'htmlFor',
-      class: 'className',
+      class: 'className'
     },
 
     prop: function (elem, name, value) {
@@ -7683,9 +7682,9 @@
             elem.href
             ? elem.tabIndex
             : -1;
-        },
-      },
-    },
+        }
+      }
+    }
   });
 
   if (!support.optSelected) {
@@ -7696,7 +7695,7 @@
           parent.parentNode.selectedIndex;
         }
         return null;
-      },
+      }
     };
   }
 
@@ -7711,7 +7710,7 @@
       'colSpan',
       'useMap',
       'frameBorder',
-      'contentEditable',
+      'contentEditable'
     ],
     function () {
       jQuery.propFix[this.toLowerCase()] = this;
@@ -7888,7 +7887,7 @@
       }
 
       return false;
-    },
+    }
   });
 
   var rreturn = /\r/g;
@@ -7967,7 +7966,7 @@
           this.value = val;
         }
       });
-    },
+    }
   });
 
   jQuery.extend({
@@ -7980,7 +7979,7 @@
             : // Support: IE10-11+
               // option.text throws exceptions (#14686, #14858)
               jQuery.trim(jQuery.text(elem));
-        },
+        }
       },
       select: {
         get: function (elem) {
@@ -8042,9 +8041,9 @@
             elem.selectedIndex = -1;
           }
           return values;
-        },
-      },
-    },
+        }
+      }
+    }
   });
 
   // Radios and checkboxes getter/setter
@@ -8055,7 +8054,7 @@
           return (elem.checked =
             jQuery.inArray(jQuery(elem).val(), value) >= 0);
         }
-      },
+      }
     };
     if (!support.checkOn) {
       jQuery.valHooks[this].get = function (elem) {
@@ -8102,7 +8101,7 @@
       return arguments.length === 1
         ? this.off(selector, '**')
         : this.off(types, selector || '**', fn);
-    },
+    }
   });
 
   var nonce = jQuery.now();
@@ -8397,7 +8396,7 @@
                   state: 'parsererror',
                   error: conv
                     ? e
-                    : 'No conversion from ' + prev + ' to ' + current,
+                    : 'No conversion from ' + prev + ' to ' + current
                 };
               }
             }
@@ -8442,19 +8441,19 @@
         text: 'text/plain',
         html: 'text/html',
         xml: 'application/xml, text/xml',
-        json: 'application/json, text/javascript',
+        json: 'application/json, text/javascript'
       },
 
       contents: {
         xml: /xml/,
         html: /html/,
-        json: /json/,
+        json: /json/
       },
 
       responseFields: {
         xml: 'responseXML',
         text: 'responseText',
-        json: 'responseJSON',
+        json: 'responseJSON'
       },
 
       // Data converters
@@ -8470,7 +8469,7 @@
         'text json': jQuery.parseJSON,
 
         // Parse text as xml
-        'text xml': jQuery.parseXML,
+        'text xml': jQuery.parseXML
       },
 
       // For options that shouldn't be deep extended:
@@ -8479,8 +8478,8 @@
       // deep extended (see ajaxExtend)
       flatOptions: {
         url: true,
-        context: true,
-      },
+        context: true
+      }
     },
 
     // Creates a full fledged settings object into target
@@ -8611,7 +8610,7 @@
             }
             done(0, finalText);
             return this;
-          },
+          }
         };
 
       // Attach deferreds
@@ -8887,7 +8886,7 @@
           globalEventContext.trigger(isSuccess ? 'ajaxSuccess' : 'ajaxError', [
             jqXHR,
             s,
-            isSuccess ? success : error,
+            isSuccess ? success : error
           ]);
         }
 
@@ -8912,7 +8911,7 @@
 
     getScript: function (url, callback) {
       return jQuery.get(url, undefined, callback, 'script');
-    },
+    }
   });
 
   jQuery.each(['get', 'post'], function (i, method) {
@@ -8929,7 +8928,7 @@
         type: method,
         dataType: type,
         data: data,
-        success: callback,
+        success: callback
       });
     };
   });
@@ -8941,7 +8940,7 @@
       dataType: 'script',
       async: false,
       global: false,
-      throws: true,
+      throws: true
     });
   };
 
@@ -9014,7 +9013,7 @@
           }
         })
         .end();
-    },
+    }
   });
 
   jQuery.expr.filters.hidden = function (elem) {
@@ -9130,7 +9129,7 @@
             : { name: elem.name, value: val.replace(rCRLF, '\r\n') };
         })
         .get();
-    },
+    }
   });
 
   jQuery.ajaxSettings.xhr = function () {
@@ -9146,7 +9145,7 @@
       0: 200,
       // Support: IE9
       // #1450: sometimes IE returns 1223 when it should be 204
-      1223: 204,
+      1223: 204
     },
     xhrSupported = jQuery.ajaxSettings.xhr();
 
@@ -9233,7 +9232,7 @@
                     // (#11426)
                     typeof xhr.responseText === 'string'
                       ? {
-                          text: xhr.responseText,
+                          text: xhr.responseText
                         }
                       : undefined,
                     xhr.getAllResponseHeaders()
@@ -9265,7 +9264,7 @@
           if (callback) {
             callback();
           }
-        },
+        }
       };
     }
   });
@@ -9274,17 +9273,17 @@
   jQuery.ajaxSetup({
     accepts: {
       script:
-        'text/javascript, application/javascript, application/ecmascript, application/x-ecmascript',
+        'text/javascript, application/javascript, application/ecmascript, application/x-ecmascript'
     },
     contents: {
-      script: /(?:java|ecma)script/,
+      script: /(?:java|ecma)script/
     },
     converters: {
       'text script': function (text) {
         jQuery.globalEval(text);
         return text;
-      },
-    },
+      }
+    }
   });
 
   // Handle cache's special case and crossDomain
@@ -9308,7 +9307,7 @@
             .prop({
               async: true,
               charset: s.scriptCharset,
-              src: s.url,
+              src: s.url
             })
             .on(
               'load error',
@@ -9326,7 +9325,7 @@
           if (callback) {
             callback();
           }
-        },
+        }
       };
     }
   });
@@ -9341,7 +9340,7 @@
       var callback = oldCallbacks.pop() || jQuery.expando + '_' + nonce++;
       this[callback] = true;
       return callback;
-    },
+    }
   });
 
   // Detect, normalize options and install callbacks for jsonp requests
@@ -9491,7 +9490,7 @@
           // if "type" variable is undefined, then "GET" method will be used
           type: type,
           dataType: 'html',
-          data: params,
+          data: params
         })
         .done(function (responseText) {
           // Save response for use in complete callback
@@ -9530,7 +9529,7 @@
       'ajaxComplete',
       'ajaxError',
       'ajaxSuccess',
-      'ajaxSend',
+      'ajaxSend'
     ],
     function (i, type) {
       jQuery.fn[type] = function (fn) {
@@ -9608,7 +9607,7 @@
       } else {
         curElem.css(props);
       }
-    },
+    }
   };
 
   jQuery.fn.extend({
@@ -9646,7 +9645,7 @@
       win = getWindow(doc);
       return {
         top: box.top + win.pageYOffset - docElem.clientTop,
-        left: box.left + win.pageXOffset - docElem.clientLeft,
+        left: box.left + win.pageXOffset - docElem.clientLeft
       };
     },
 
@@ -9688,9 +9687,7 @@
         top:
           offset.top - parentOffset.top - jQuery.css(elem, 'marginTop', true),
         left:
-          offset.left -
-          parentOffset.left -
-          jQuery.css(elem, 'marginLeft', true),
+          offset.left - parentOffset.left - jQuery.css(elem, 'marginLeft', true)
       };
     },
 
@@ -9708,7 +9705,7 @@
 
         return offsetParent || docElem;
       });
-    },
+    }
   });
 
   // Create scrollLeft and scrollTop methods

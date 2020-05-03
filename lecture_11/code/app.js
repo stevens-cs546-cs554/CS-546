@@ -7,7 +7,7 @@ const Handlebars = require('handlebars');
 
 const handlebarsInstance = exphbs.create({
   defaultLayout: 'main',
-  partialsDir: ['views/partials/'],
+  partialsDir: ['views/partials/']
 });
 
 const rewriteUnsupportedBrowserMethods = (req, res, next) => {

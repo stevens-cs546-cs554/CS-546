@@ -14,7 +14,7 @@
 
       var requestConfig = {
         method: 'POST',
-        url: '/api/todo/complete/' + currentId,
+        url: '/api/todo/complete/' + currentId
       };
 
       $.ajax(requestConfig).then(function (responseMessage) {
@@ -45,8 +45,8 @@
           contentType: 'application/json',
           data: JSON.stringify({
             name: newName,
-            description: newDescription,
-          }),
+            description: newDescription
+          })
         };
 
         $.ajax(requestConfig).then(function (responseMessage) {
@@ -61,8 +61,8 @@
           contentType: 'application/json',
           data: JSON.stringify({
             name: newName,
-            description: newDescription,
-          }),
+            description: newDescription
+          })
         };
 
         $.ajax(requestConfig).then(function (responseMessage) {

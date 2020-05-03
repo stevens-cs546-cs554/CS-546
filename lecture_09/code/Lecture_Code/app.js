@@ -5,7 +5,7 @@ const configRoutes = require('./routes');
 const exphbs = require('express-handlebars');
 
 const handlebarsInstance = exphbs.create({
-  defaultLayout: 'main',
+  defaultLayout: 'main'
 });
 
 const rewriteUnsupportedBrowserMethods = (req, res, next) => {

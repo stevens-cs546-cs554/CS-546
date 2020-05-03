@@ -31,7 +31,7 @@ let exportedMethods = {
     if (num2 <= 0) throw 'Cannot divide by 0!';
 
     return num1 / num2;
-  },
+  }
 };
 
 module.exports = exportedMethods;

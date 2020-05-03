@@ -39,7 +39,7 @@ router.post('/server', (req, res) => {
       firstNumber: firstNumber,
       secondNumber: secondNumber,
       operation: operation,
-      error: e,
+      error: e
     });
     return;
   }
@@ -48,7 +48,7 @@ router.post('/server', (req, res) => {
     firstNumber: firstNumber,
     secondNumber: secondNumber,
     operation: operation,
-    result: result,
+    result: result
   });
 });
 

@@ -33,7 +33,7 @@ module.exports = {
 
     let newDog = {
       name: name,
-      breeds: breeds,
+      breeds: breeds
     };
 
     const insertInfo = await dogCollection.insertOne(newDog);
@@ -68,7 +68,7 @@ module.exports = {
     const dogCollection = await dogs();
     const updatedDog = {
       name: name,
-      breeds: breeds,
+      breeds: breeds
     };
 
     const updatedInfo = await dogCollection.updateOne(
@@ -80,5 +80,5 @@ module.exports = {
     }
 
     return await this.getDogById(id);
-  },
+  }
 };

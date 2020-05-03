@@ -24,7 +24,7 @@ let exportedMethods = {
       firstName: firstName,
       lastName: lastName,
       _id: uuid(),
-      posts: [],
+      posts: []
     };
 
     const newInsertInformation = await userCollection.insertOne(newUser);
@@ -45,7 +45,7 @@ let exportedMethods = {
 
     let userUpdateInfo = {
       firstName: updatedUser.firstName,
-      lastName: updatedUser.lastName,
+      lastName: updatedUser.lastName
     };
 
     const userCollection = await users();
@@ -86,7 +86,7 @@ let exportedMethods = {
       throw 'Update failed';
 
     return await this.getUserById(userId);
-  },
+  }
 };
 
 module.exports = exportedMethods;

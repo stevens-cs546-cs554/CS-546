@@ -20,7 +20,7 @@ const main = async () => {
 
   const porkChop = await dogs.addDog('Pork Chop', [
     'Golden Retriever',
-    'Labrador',
+    'Labrador'
   ]);
   const porkChopPost = await posts.addPost(
     'Who Am I?',
@@ -52,7 +52,7 @@ const main = async () => {
 
   const updatedSashasName = await dogs.updateDog(sasha._id, 'Dharma', [
     'Husky',
-    'American Eskimo',
+    'American Eskimo'
   ]);
   console.log("Now Sasha's name is:");
   console.log(updatedSashasName);

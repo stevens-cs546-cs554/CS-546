@@ -38,10 +38,10 @@ const exportedMethods = {
       body: body,
       poster: {
         id: posterId,
-        name: `${userThatPosted.firstName} ${userThatPosted.lastName}`,
+        name: `${userThatPosted.firstName} ${userThatPosted.lastName}`
       },
       tags: tags,
-      _id: uuid(),
+      _id: uuid()
     };
 
     const newInsertInformation = await postCollection.insertOne(newPost);
@@ -91,15 +91,15 @@ const exportedMethods = {
   async renameTag(oldTag, newTag) {
     if (oldTag === newTag) throw 'tags are the same';
     let findDocuments = {
-      tags: oldTag,
+      tags: oldTag
     };
 
     let firstUpdate = {
-      $addToSet: { tags: newTag },
+      $addToSet: { tags: newTag }
     };
 
     let secondUpdate = {
-      $pull: { tags: oldTag },
+      $pull: { tags: oldTag }
     };
 
     const postCollection = await posts();
@@ -107,7 +107,7 @@ const exportedMethods = {
     await postCollection.updateMany(findDocuments, secondUpdate);
 
     return await this.getPostsByTag(newTag);
-  },
+  }
 };
 
 module.exports = exportedMethods;

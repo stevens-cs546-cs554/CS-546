@@ -9,28 +9,28 @@ function getInfo() {
     description: 'Which operation do you want to do?',
     type: 'string', // Specify the type of input to expect.
     default: 'add', // Default value to use if no value is entered.
-    required: true, // If true, value entered must be non-empty.
+    required: true // If true, value entered must be non-empty.
   };
 
   const num1Prompt = {
     name: 'num1',
     description: 'What is the first number?',
     type: 'number',
-    required: true,
+    required: true
   };
 
   const num2Prompt = {
     name: 'num2',
     description: 'What is the second number?',
     type: 'number',
-    required: true,
+    required: true
   };
 
   const quitPrompt = {
     name: 'quit',
     description: 'Do you want to quit after this operation?',
     type: 'boolean',
-    required: true,
+    required: true
   };
 
   function stringToOperation(str) {

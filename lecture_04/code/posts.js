@@ -32,8 +32,8 @@ let exportedMethods = {
       body: body,
       poster: {
         id: posterId,
-        name: dogThatPosted.name,
-      },
+        name: dogThatPosted.name
+      }
     };
 
     const insertInfo = await postCollection.insertOne(newPostInfo);
@@ -66,8 +66,8 @@ let exportedMethods = {
       body: body,
       poster: {
         id: posterId,
-        name: dogThatPosted.name,
-      },
+        name: dogThatPosted.name
+      }
     };
 
     const updatedInfo = await postCollection.replaceOne(
@@ -80,7 +80,7 @@ let exportedMethods = {
     }
 
     return await this.getPostById(id);
-  },
+  }
 };
 
 module.exports = exportedMethods;
