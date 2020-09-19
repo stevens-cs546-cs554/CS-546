@@ -7,7 +7,9 @@ async function main() {
 
 main();
 
-/*	this console.log will not be blocked as it does not 
-depend on the results of main so it will execute before 
-main is finished */
+/*	
+	this console.log will not be blocked as it does not  depend 
+	on the results of main so it will execute before 
+	main is finished 
+*/
 console.log('after main is run');
