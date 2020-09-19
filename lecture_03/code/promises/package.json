@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bluebird": "^3.5.0",
+    "bluebird": "^3.7.2",
     "prompt": "^1.0.0"
   }
 }
