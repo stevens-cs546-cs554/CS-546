@@ -5,6 +5,7 @@ async function main() {
   console.log(await getData.getApiData());
 }
 
+//comment this out if you uncomment main2 below
 main();
 
 /*	
@@ -12,4 +13,18 @@ main();
 	on the results of main so it will execute before 
 	main is finished 
 */
-console.log('after main is run');
+console.log('After main is run');
+
+//Say we want the console.log to happen after main has
+//done it's job, we await main, then the code after the
+//function call to main will execute after main is complete
+
+// async function main2() {
+// 	console.log('*******************************');
+// 	console.log('*************MAIN2 CALL**************');
+// 	console.log('*******************************');
+// 	await main();
+// 	console.log('After main is run, but we awaited it this time');
+// }
+
+// main2();
