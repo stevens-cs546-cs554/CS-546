@@ -29,7 +29,8 @@ async function main() {
 
   // Now we have the actual file data read
   console.log('before write');
-  await fs.writeFileAsync(reversedName, reversedContent);
+  const x = await fs.writeFileAsync(reversedName, reversedContent);
+  console.log(x);
   console.log('Finished!');
 
   return null;

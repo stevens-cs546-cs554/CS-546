@@ -87,12 +87,18 @@ router.patch('/:id', async (req, res) => {
     res.status(404).json({ error: 'Post not found' });
     return;
   }
-
-  try {
-    const updatedPost = await postData.updatePost(req.params.id, updatedObject);
-    res.json(updatedPost);
-  } catch (e) {
-    res.status(500).json({ error: e });
+  if (Object.keys(updatedObject).length !== 0) {
+    try {
+      const updatedPost = await postData.updatePost(
+        req.params.id,
+        updatedObject
+      );
+      res.json(updatedPost);
+    } catch (e) {
+      res.status(500).json({ error: e });
+    }
+  } else {
+    res.status(400).json({ error: 'No fields have been updated' });
   }
 });
 
