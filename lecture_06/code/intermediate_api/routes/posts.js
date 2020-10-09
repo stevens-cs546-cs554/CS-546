@@ -98,7 +98,7 @@ router.patch('/:id', async (req, res) => {
       res.status(500).json({ error: e });
     }
   } else {
-    res.status(400).json({ error: 'No fields have been updated' });
+    res.status(400).json({ error: 'No fields have been changed from their inital values, so no update has occurred' });
   }
 });
 
