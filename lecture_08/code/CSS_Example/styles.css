@@ -71,3 +71,10 @@ li {
 	border-right: 3px dotted green;
 	border-left: 3px dashed salmon;
 }
+
+p.about,
+.contact p {
+	color: cyan;
+	text-decoration: none;
+	font-weight: bold;
+}
