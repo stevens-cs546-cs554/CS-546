@@ -16,7 +16,6 @@
 // 	}
 // }
 
-
 // myBtnTwo.addEventListener('click', ()=>{
 // 	if (myErrorDiv.hidden== true){
 // 		myErrorDiv.hidden=false
@@ -37,32 +36,31 @@
 // 	myUl.appendChild(li)
 // }
 
-let myForm = document.getElementById("myForm")
-let textInput = document.getElementById("text_input")
-let errorDiv = document.getElementById("error")
-let myUl = document.getElementById("list")
-let frmLabel = document.getElementById("formLabel")
+let myForm = document.getElementById('myForm');
+let textInput = document.getElementById('text_input');
+let errorDiv = document.getElementById('error');
+let myUl = document.getElementById('list');
+let frmLabel = document.getElementById('formLabel');
 
-if (myForm){
-	myForm.addEventListener('submit', (event)=>{
-		event.preventDefault()
-		if (textInput.value.trim()){
-			textInput.classList.remove("inputClass")
-			errorDiv.hidden=true
-			frmLabel.classList.remove ("error")
-			let li = document.createElement("li")
-			li.innerHTML=textInput.value
-			myUl.appendChild(li)
-			myForm.reset ()
-			textInput.focus()
-		}else{
-			textInput.value=""
-			errorDiv.hidden=false
-			errorDiv.innerHTML= "You must enter a value"
-			frmLabel.className= "error"
-			textInput.focus()
-			textInput.className="inputClass"
-			
-		}
-	})
+if (myForm) {
+  myForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (textInput.value.trim()) {
+      textInput.classList.remove('inputClass');
+      errorDiv.hidden = true;
+      frmLabel.classList.remove('error');
+      let li = document.createElement('li');
+      li.innerHTML = textInput.value;
+      myUl.appendChild(li);
+      myForm.reset();
+      textInput.focus();
+    } else {
+      textInput.value = '';
+      errorDiv.hidden = false;
+      errorDiv.innerHTML = 'You must enter a value';
+      frmLabel.className = 'error';
+      textInput.focus();
+      textInput.className = 'inputClass';
+    }
+  });
 }

@@ -10,23 +10,19 @@ app.use(
     name: 'AwesomeWebApp',
     secret: "This is a secret.. shhh don't tell anyone",
     saveUninitialized: true,
-		resave: false,
-		cookie: { maxAge: 60000 }
-		
+    resave: false,
+    cookie: { maxAge: 60000 }
   })
 );
 
 app.use('/private', (req, res, next) => {
-	console.log(req.session.id)
+  console.log(req.session.id);
   if (!req.session.user) {
-		
     return res.redirect('/');
   } else {
     next();
   }
 });
-
-
 
 app.use('/login', (req, res, next) => {
   if (req.session.user) {
