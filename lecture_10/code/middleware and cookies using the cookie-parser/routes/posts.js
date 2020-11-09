@@ -9,12 +9,15 @@ router.get('/', async (req, res) => {
   res.json({ route: '/posts', method: req.method });
 });
 
+router.put('/', async (req, res) => {
+  res.json({ route: '/posts', method: req.method });
+});
+
 router.post('/', async (req, res) => {
   res.json({ route: '/posts', method: req.method });
 });
 
 router.put('/:id', async (req, res) => {
-  req.session.bar = 'foo';
   res.json({ route: `/posts/${req.params.id}`, method: req.method });
 });
 

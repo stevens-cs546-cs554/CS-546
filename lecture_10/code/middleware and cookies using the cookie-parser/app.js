@@ -106,7 +106,7 @@ app.use(async (req, res, next) => {
 
     // invalidate, then clear so that lastAccessed no longer shows up on the
     // cookie object
-    // response.cookie("lastAccessed", "", { expires: anHourAgo });
+    res.cookie("lastAccessed", "", { expires: anHourAgo });
     res.clearCookie('lastAccessed');
 
     next();
