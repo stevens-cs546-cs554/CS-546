@@ -120,7 +120,8 @@ app.use(async (req, res, next) => {
   // Providing a third parameter is optional, but allows you to set options for the cookies.
   // see: http://expressjs.com/en/api.html#res.cookie
   // for details on what you can do!
-  res.cookie('lastAccessed', now.toString(), { expires: expiresAt });
+	res.cookie('lastAccessed', now.toString(), { expires: expiresAt });
+	res.cookie ("patrick", "hill")
   next();
 });
 

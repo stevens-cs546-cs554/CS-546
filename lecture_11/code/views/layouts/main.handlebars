@@ -10,9 +10,9 @@
 
 <body>
     <main class="container">
-        <h1 id="the-heading">AJAX and Security!</h1>
+        <h1 id="the-heading">JavaScript APIs!</h1>
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-6">
                 {{{body}}}
             </div>
         </div>
@@ -22,8 +22,7 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
         crossorigin="anonymous"></script>
-    <script src="/public/js/basic_ajax_with_jquery.js"></script>
-
+    {{> (lookup . 'partial') }}
 </body>
 
 </html>
