@@ -13,6 +13,7 @@ $('#myForm').submit((event) => {
     $('#error').html('You must enter an input value');
     $('#formLabel').addClass('error');
     $('#text_input').addClass('inputClass');
-    $('#text_input').focus();
+		$('#text_input').focus();
+		$('#text_input').value= "";
   }
 });

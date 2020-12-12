@@ -70,7 +70,7 @@ var hiClass = 'Hello Instructor';
 
     setTimeout(function () {
       resultAlert.text('You submitted a value of ' + val * val);
-    }, 250);
+    }, 2000);
   });
 
   mainElement.append(newForm);

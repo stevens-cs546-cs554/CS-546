@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Document</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+	<h1><b>Navs</b></h1>
+	<h2>Without Bootstrap</h2>
+	<ul>
+		<li><a href="#">Active</a></li>
+		<li><a href="#">Link</a></li>
+		<li><a href="#">Link</a></li>
+		<li><a href="#" tabindex="-1">Disabled</a></li>
+	</ul>
+	<h2>With Bootstrap</h2>
+	<ul class="nav">
+		<li class="nav-item"><a class="nav-link" href="#">Active</a></li>
+		<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+		<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+		<li class="nav-item"><a class="nav-link disabled" aria-disabled="true" href="#" tabindex="-1">Disabled</a></li>
+	</ul>
+	<h1>Forms</h1>
+	<h2>Without Bootstrap</h2>
+	<h3>Form 1</h3>
+	<form>
+		<div>
+			<label for='exampleFormControlInput1'>Email Address</label>
+			<input type='email' id="exampleFormControlInput1" placeholder="name@email.com" aria-describedby="emailHelp" />
+			<br>
+			<small id='emailHelp'>We'll never share your email with anyone</small>
+			<br>
+			<label for='exampleFormControlInputPassword1'>Password</label>
+			<input type='password' id="exampleFormControlInputPassword1" />
+			<br>
+			<label for='exampleCheck1'>Check Me Out</label>
+			<input type='checkbox' id="exampleCheck1" />
+			<br>
+			<button type="submit">Submit</button>
+		</div>
+	</form>
+	<br>
+	<h3>Form 2</h3>
+	<form>
+		<label for='exampleFormControlSelect1'>Example Select</label>
+		<select id="exampleFormControlSelect1">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+		</select>
+		<label for='exampleFormControlSelect2'>Example Multiple Select</label>
+		<select multiple id="exampleFormControlSelect2">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+		</select>
+
+		<label for='exampleFormControlTextArea1'>Example Textarea</label>
+		<textarea id="exampleFormControlTextArea1" rows='3'></textarea>
+		<button type="submit">Submit</button>
+	</form>
+	<hr>
+	<h2>With Bootstrap</h2>
+	<h3>Form 1</h3>
+	<form>
+		<div class='form-group'>
+			<label for='exampleFormControlInput2'>Email Address</label>
+			<input class='form-control' type='email' id="exampleFormControlInput2" placeholder="name@email.com"
+				aria-describedby="emailHelp2" />
+			<small class='form-text text-muted' id='emailHelp2'>We'll never share your email with anyone</small>
+		</div>
+		<div class='form-group'>
+			<label for='exampleFormControlInputPassword2'>Password</label>
+			<input class='form-control' type='password' id="exampleFormControlInputPassword2" />
+		</div>
+		<div class='form-group form-check bg-warning'>
+			<input class='form-check-input' type='checkbox' id="exampleCheck2" />
+			<label class='form-check-label' for='exampleCheck2'>Check Me Out</label>
+
+		</div>
+		<button class='btn btn-primary' type="submit">Submit</button>
+
+
+
+	</form>
+	<br>
+	<h3>Form 2</h3>
+	<form>
+		<div class='form-group'>
+			<label for='exampleFormControlSelect3'>Example Select</label>
+			<select class='form-control bg-danger' id="exampleFormControlSelect3">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+		<div class='form-group'>
+			<label for='exampleFormControlSelect4'>Example Multiple Select</label>
+			<select class='form-control' multiple id="exampleFormControlSelect4">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+		<div class='form-group'>
+			<label for='exampleFormControlTextArea2'>Example Textarea</label>
+			<textarea class='form-control' id="exampleFormControlTextArea2" rows='3'></textarea>
+		</div>
+		<button class='btn btn-primary' type="submit">Submit</button>
+	</form>
+	<br>
+	<div class="bg-dark text-white">ANother Div</div>
+	<div class='alert alert-primary'>Test Alert 1</div>
+	<div class='alert alert-secondary'>Test Alert 2</div>
+	<div class='alert alert-warning'>Test Alert 3</div>
+	<div>Test Alert 4</div>
+	<div>Test Alert 5</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

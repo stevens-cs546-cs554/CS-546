@@ -9,7 +9,7 @@ async function main() {
   let compareToMerlin = false;
 
   try {
-    compareToMerlin = await bcrypt.compare('merlinsbeard', hash);
+    compareToMerlin = await bcrypt.compare('elementarymydearwatson', '$2a$16$7JKSiEmoP3GNDSalogqgPu0sUbwder7CAN/5wnvCWe6xCKAKwlTD.');
   } catch (e) {
     //no op
   }
